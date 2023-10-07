@@ -1,0 +1,10 @@
+<header class="flex">
+  <img src="/assets/images/icon.png"/>
+  <div>
+    <nav>
+        <a *ngIf="mode==='landing'" router-link="/about">О нас</a>
+        <a *ngIf="mode==='landing'" router-link="/what">O букроссинге</a>
+        <app-button *ngIf="mode==='landing'" [label]="'Посетить'"></app-button>
+    </nav>
+  </div>
+</header>

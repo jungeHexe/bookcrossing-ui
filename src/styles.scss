@@ -1,1 +1,82 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
+
+
+@import './app/core/styles/colors';
+
+body {
+  background-color: $brown;
+  margin: 0;
+  color: $coffee;
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display';
+  font-weight: 400;
+}
+
+.flex {
+  display: flex;
+}
+
+a {
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  color: $coffee;
+
+  &:hover {
+    border-bottom: 3px $coffee solid;
+  }
+}
+
+.w-100-p {
+  width: 100%;
+}
+
+.w-80-p {
+  width: 80%;
+}
+
+header {
+  justify-content: space-between;
+  z-index: 1000;
+
+  a {
+    margin: 0 10px;
+  }
+
+  app-button {
+    margin-left: 20px;
+  }
+}
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  color: $coffee;
+  z-index: 6;
+  position: relative;
+
+  a {
+    margin: auto 0;
+  }
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.justify-content-end {
+  justify-content: end;
+}

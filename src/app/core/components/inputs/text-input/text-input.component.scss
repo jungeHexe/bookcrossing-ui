@@ -1,0 +1,30 @@
+@import 'src/app/core/styles/colors';
+
+
+@mixin font-style {
+  font-family: 'Poppins';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+input, textarea {
+  border: 1px solid $coffee;
+  border-radius: 5px;
+  background-color: transparent;
+  height: 30px;
+  padding: 10px;
+  color: rgba(227, 212, 198, 0.41);
+  box-sizing: border-box;
+  
+  @include font-style
+
+}
+
+label {
+  padding-left: 10px;
+  color: #E3D4C6;
+  
+  @include font-style
+}

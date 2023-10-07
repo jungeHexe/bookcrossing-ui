@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {UserStoreService} from "./core/stores/user-store.service";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'bookcrossing-ui';
+
+  isAuthorized = UserStoreService.isAuthorized();
 }
