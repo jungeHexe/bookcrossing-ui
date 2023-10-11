@@ -1,0 +1,19 @@
+<div class="container">
+  <fieldset class="list-title"><legend>Найди ту самую (книгу)</legend></fieldset>
+  <app-books-list-filter
+      [repository]="this.repository"
+      (onSearchClick)="this.repository.getData()"
+  ></app-books-list-filter>
+  
+  <div class="list">
+      <app-book-card *ngFor="let book of this.data$ | async |
+        paginate: { id: 'server', itemsPerPage: this.repository.paginationData?.perPage,
+        currentPage: this.repository.paginationData?.page, totalItems: this.repository.paginationData?.total }" [book]="book">
+      </app-book-card>
+  </div>
+  
+  <div class="flex justify-content-end">
+      <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+      <pagination-controls class="my-pagination" (pageChange)="getPage($event)" id="server"></pagination-controls>
+  </div>
+</div>

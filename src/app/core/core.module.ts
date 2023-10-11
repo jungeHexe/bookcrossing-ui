@@ -5,31 +5,35 @@ import {RouterModule} from "@angular/router";
 import {TextInputComponent} from "./components/inputs/text-input/text-input.component";
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import {ButtonComponent} from "./components/inputs/button/button.component";
+import { ButtonComponent } from "./components/inputs/button/button.component";
+import { NgxPaginationModule } from "ngx-pagination";
+import { SelectInputComponent } from './components/inputs/select-input/select-input.component';
 
 const components = [
   TextInputComponent,
   ButtonComponent,
   FooterComponent,
   HeaderComponent,
+  SelectInputComponent,
 ];
 
-//const directives = [];
+const directives = [];
 
-//const pipes = [];
+const pipes = [];
 
 @NgModule({
   declarations: [
     ...components,
     HeaderComponent,
     FooterComponent,
-//    ...directives,
-//    ...pipes,
+    // ...directives,
+    //...pipes,
     ],
   exports: [
     // Angular modules
     CommonModule,
     FormsModule,
+    NgxPaginationModule,
     ReactiveFormsModule,
     RouterModule,
     
@@ -39,6 +43,7 @@ const components = [
     ],
   imports: [
     CommonModule,
+    NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,

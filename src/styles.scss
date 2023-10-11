@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
 
 
 @import './app/core/styles/colors';
+@import './app/core/styles/paginator';
 
 body {
   background-color: $brown;
@@ -30,7 +31,7 @@ a {
   text-decoration: none;
   color: $coffee;
 
-  &:hover {
+  &:hover, &.active-link {
     border-bottom: 3px $coffee solid;
   }
 }
@@ -43,12 +44,33 @@ a {
   width: 80%;
 }
 
+.w-25-p {
+  width: 25%;
+}
+
 header {
   justify-content: space-between;
   z-index: 1000;
+  padding: 50px 70px;
+  font-size: inherit;
+  position: relative;
+
+  span {
+    font-family: 'Playfair Display';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: inline-flex;
+    align-items: center;
+
+    img {
+      margin-right: 10px;
+    }
+  }
 
   a {
-    margin: 0 10px;
+    margin: 0 35px;
   }
 
   app-button {
@@ -79,4 +101,41 @@ footer {
 
 .justify-content-end {
   justify-content: end;
+}
+
+.container {
+  padding: 30px 70px;
+
+  fieldset.list-title {
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+  .list-title legend {
+    flex-shrink: 0;
+    color: $coffee;
+    font-family: 'Playfair Display';
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-left: 130px;
+    padding: 0 30px;
+  }
+
+  .list-filter {
+    margin: 25px 0 45px;
+    display: flex;
+    grid-gap: 25px;
+
+    app-button {
+      margin-top: 23px;
+    }
+  }
+
+  .list {
+    display: grid;
+    grid-template-columns: repeat(2, calc((100% - 40px)/2));
+    grid-gap: 40px;
+  }
 }
