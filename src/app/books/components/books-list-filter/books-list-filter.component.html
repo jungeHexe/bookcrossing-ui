@@ -11,11 +11,7 @@
     [placeholder]="'Введите ФИО автора через пробел'"
     [control]="getControl(controlNames.AUTHOR_NAME)" 
   ></app-text-input>
-  <app-select-input
-    class="w-25-p"
-    [label]="'Жанр книги'"
-    [placeholder]="'Введите жанр'"
-    [control]="getControl(controlNames.GENRES)" 
-  ></app-select-input>
+  <div class="w-25-p">Todo</div>
+  <div class="w-25-p">Todo</div>
   <app-button [label]="'Искать'" (click)="onSearchClick.emit()"></app-button>
 </div>

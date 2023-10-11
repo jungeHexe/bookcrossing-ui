@@ -1,7 +1,7 @@
 @import 'src/app/core/styles/colors';
 
 
-@mixin font-style {
+:host {
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
   font-style: normal;
@@ -18,14 +18,10 @@ input, textarea {
   padding: 5px 10px;
   color: rgba(227, 212, 198, 0.41);
   box-sizing: border-box;
-  
-  @include font-style;
-
+  font-size: 16px;
 }
 
 label {
   padding-left: 10px;
   color: #E3D4C6;
-  
-  @include font-style
 }
