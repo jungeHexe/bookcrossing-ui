@@ -8,6 +8,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ButtonComponent } from "./components/inputs/button/button.component";
 import { NgxPaginationModule } from "ngx-pagination";
 import { SelectInputComponent } from './components/inputs/select-input/select-input.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { TabComponent } from './components/tabs/tab/tab.component';
 
 const components = [
   TextInputComponent,
@@ -15,6 +17,9 @@ const components = [
   FooterComponent,
   HeaderComponent,
   SelectInputComponent,
+
+  TabsComponent,
+  TabComponent,
 ];
 
 const directives = [];

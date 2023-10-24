@@ -1,5 +1,5 @@
 export interface SelectOption {
-  id: any;
+  guid: any;
   name: string;
   disabled?: boolean;
   toString(): string;

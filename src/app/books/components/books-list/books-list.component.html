@@ -1,15 +1,20 @@
 <div class="container">
-  <fieldset class="list-title"><legend>Найди ту самую (книгу)</legend></fieldset>
+  <div class="flex justify-content-between">
+    <fieldset class="list-title"><legend>Найди ту самую (книгу)</legend></fieldset>
+    <app-button class="my-auto" [type]="'second'" [label]="'Добавить'" (click)="onCreateClick()"></app-button>
+  </div>
   <app-books-list-filter
       [repository]="this.repository"
-      (onSearchClick)="this.repository.getData()"
+      (onSearchClick)="this.getPage(this.repository.paginationData?.page)"
   ></app-books-list-filter>
   
   <div class="list">
-      <app-book-card *ngFor="let book of this.data$ | async |
+      <app-book-list-card *ngFor="let book of this.data$ | async |
         paginate: { id: 'server', itemsPerPage: this.repository.paginationData?.perPage,
-        currentPage: this.repository.paginationData?.page, totalItems: this.repository.paginationData?.total }" [book]="book">
-      </app-book-card>
+        currentPage: this.repository.paginationData?.page, totalItems: this.repository.paginationData?.total }"
+        [book]="book"
+        (onClick)="onReadClick($event)"
+      ></app-book-list-card>
   </div>
   
   <div class="flex justify-content-end">

@@ -1,22 +1,24 @@
-import {BaseEnum, BaseEnumData} from "../../../core/enums/base.enum";
+import {BaseEnum, BaseEnumData} from "./base.enum";
 
 export enum BooksListSortingEnum {
-  RequestsCount = 'RequestsCount',
-  ReviewsCounts = 'ReviewsCounts',
-  CreatedAt = 'createdAt',
+  RatingAsc = '+rating',
+  RatingDesc = '-rating',
+  TitleAsc = '+title',
+  TitleDesc = '-title',
 }
 
 export class BooksListSorting extends BaseEnum {
   public static BooksListSortingDictionary = new Map<BooksListSortingEnum, BaseEnumData>([
-    [BooksListSortingEnum.RequestsCount, { name: 'По количеству объявлений' }],
-    [BooksListSortingEnum.ReviewsCounts, { name: 'По количеству рецензий' }],
-    [BooksListSortingEnum.CreatedAt, { name: 'По дате создания' }],
+    [BooksListSortingEnum.RatingAsc, { name: 'По возрастанию рейтинга' }],
+    [BooksListSortingEnum.RatingDesc, { name: 'По убыванию рейтинга' }],
+    [BooksListSortingEnum.TitleAsc, { name: 'По возрастанию названия' }],
+    [BooksListSortingEnum.TitleDesc, { name: 'По убыванию названия' }],
     ]);
 
   /**
    * Значение перечисления.
    */
-  id: BooksListSortingEnum;
+  guid: BooksListSortingEnum;
   /**
    * Наименование перечисления.
    */
@@ -27,7 +29,7 @@ export class BooksListSorting extends BaseEnum {
     if (!countryFilterEnum) {
       return;
     }
-    this.id = countryFilterEnum;
+    this.guid = countryFilterEnum;
     this.name = BooksListSorting.BooksListSortingDictionary.get(countryFilterEnum).name;
   }
 

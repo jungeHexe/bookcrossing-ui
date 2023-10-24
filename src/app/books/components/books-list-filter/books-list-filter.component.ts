@@ -24,8 +24,7 @@ export class BooksListFilterComponent extends BaseListFilterComponent implements
 
   constructor(
     private readonly listFilterStoreService: BooksListFilterStoreService,
-//    readonly enumOptionsService: EnumOptionsService,
-    ) {
+  ) {
     super();
   }
 
@@ -35,7 +34,7 @@ export class BooksListFilterComponent extends BaseListFilterComponent implements
       [this.controlNames.AUTHOR_NAME]: new CustomFormControl(filter.authorName),
       [this.controlNames.BOOK_TITLE]: new CustomFormControl(filter.bookTitle),
       [this.controlNames.GENRES]: new CustomFormControl(filter.genres),
-      [this.controlNames.ORDER_BY]: new CustomFormControl(filter.orderBy),
+      [this.controlNames.ORDER_BY]: new CustomFormControl(filter.orderBy?.name),
     };
     this.addControls(controls);
   }

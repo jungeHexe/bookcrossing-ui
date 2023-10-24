@@ -1,7 +1,7 @@
 import {BaseListFilter} from "../../core/domain/base-list-filter.model";
-import {BooksListSortingEnum} from "./enums/books-list-sorting.enum";
 import {ObjectUtils} from "../../core/utils/object-utils";
-import {Genre} from "./genre.model";
+import { Genre } from "src/app/core/domain/genre.model";
+import {BooksListSorting, BooksListSortingEnum } from "src/app/core/enums/books-list-sorting.enum";
 
 export class BooksListFilterControlNames {
   static readonly AUTHOR_NAME: keyof BooksListFilter = 'authorName';
@@ -17,7 +17,7 @@ export class BooksListFilter extends BaseListFilter {
   authorName: string = null;
   bookTitle: string = null;
   genres: Genre[] = [];
-  orderBy: BooksListSortingEnum = null;
+  orderBy: BooksListSorting = null;
   
   constructor(filter: Partial<BooksListFilter> = null) {
     super();
@@ -26,16 +26,16 @@ export class BooksListFilter extends BaseListFilter {
     }
     ObjectUtils.constructorFiller(this, filter);
     this.genres = filter.genres?.map(o => Genre.toClientObject(o)) ?? [];
+    this.orderBy = BooksListSorting.toClientObject(filter.orderBy?.guid ?? filter.orderBy);
   }
   
   toServerObject(): Partial<any> {
     const filter = {
       book_title: this.bookTitle,
       author_name: this.authorName,
-      genre: this.genres?.map(o => o.name),
-      order_by: this.orderBy,
+      genre_guids: this.genres?.map(o => o.guid),
+      order_by: this.orderBy?.guid,
     };
-    console.log(ObjectUtils.removeNullFields(filter))
     return ObjectUtils.removeNullFields(filter);
   }
 }

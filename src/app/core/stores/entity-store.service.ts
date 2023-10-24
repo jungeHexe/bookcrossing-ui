@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
-import { BaseDomain } from '../domain/abstract/base-domain.model';
+import { BaseDomain } from '../domain/base-domain.model';
 import { OperationResult } from '../domain/operation-result.model';
 import { ObjectUtils } from '../utils/object-utils';
 

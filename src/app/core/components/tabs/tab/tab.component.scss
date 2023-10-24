@@ -1,0 +1,9 @@
+@import "src/assets/styles/colors";
+
+.tab-content {
+  margin-top: 9px;
+  padding: 40px 0;
+  height: 85%;
+  border-top: 2px solid $coffee;
+  z-index: 800;
+}

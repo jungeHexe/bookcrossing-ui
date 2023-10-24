@@ -21,6 +21,10 @@ export class Genre extends BaseDomain {
     return new Genre(serverObject);
   }
   
+  toString(): string {
+    return this.name;
+  }
+  
   toServerObject(): any {
     return {
       guid: this.guid,

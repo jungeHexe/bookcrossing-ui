@@ -31,7 +31,7 @@ export abstract class BaseListRepository {
    */
   getPagination(): Pagination {
     return {
-      page: this.paginationData.page - 1,
+      page: this.paginationData.page,
       size: this.paginationData.perPage,
     };
   }

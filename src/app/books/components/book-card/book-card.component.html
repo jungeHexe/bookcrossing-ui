@@ -1,14 +1,95 @@
-<div class="card" (click)="showCard()">
-  <img class="cover" [src]="book.cover"/>
-  <div class="main-block">
-    <label>{{ book.cardTitle }}</label>
-    <section>{{ book.cardDescription }}</section>
-    <div class="flex justify-content-between">
-      <span class="genre" *ngFor="let genre of book.genres">{{ genre }}</span>
-      <span class="flex">
-        <span class="card-icon"><img src="/assets/images/book_icon.png"/>{{ book.quantityRequests ?? 0 }}</span>
-        <span class="card-icon"><img src="/assets/images/pen.png"/>{{ book.quantityReviews ?? 0 }}</span>
-      </span>
+<div class="container flex" *ngIf="!isReadOnlyMode$.value; else readMode">
+  <div class="w-30-p">
+    <div class="upload-img" *ngIf="!getControl(CONTROL_NAMES.PIC_FILE_NAME).value; else book_cover">
+      <input type="file" id='upload' (change)="this.onFileSelected($event)"/>
+      <label for="upload" class="button">Выбрать обложку книги</label>
+    </div>
+  </div>
+  <div class="w-70-p my-auto">
+    <h3 class="card-title">{{ this.cardTitle }}</h3>
+    <div class="card-row">
+      <app-text-input
+        class="w-70-p"
+        [label]="'Название книги'"
+        [placeholder]="'Введите название книги'"
+        [control]="getControl(CONTROL_NAMES.TITLE)"
+      ></app-text-input>
+      <app-select-input
+        class="w-30-p"
+        [label]="'Жанр книги'"
+        [placeholder]="'Выберите жанры книги'"
+        [selectorType]="'genre'"
+        [multi]="true"
+        [control]="getControl(CONTROL_NAMES.GENRES)"
+      ></app-select-input>
+    </div>
+    <div class="card-row">
+      <app-select-input
+        class="w-100-p"
+        [label]="'Автор книги'"
+        [placeholder]="'Выберите авторов книги'"
+        [selectorType]="'author'"
+        [multi]="true"
+        [control]="getControl(CONTROL_NAMES.AUTHORS)"
+      ></app-select-input>
+    </div>
+    <div class="card-row">
+      <app-text-input
+        class="w-100-p"
+        [label]="'Описание книги'"
+        [nativeElement]="'textarea'"
+        [placeholder]="'Введите описание книги'"
+        [control]="getControl(CONTROL_NAMES.DESCRIPTION)"
+      ></app-text-input>
+    </div>
+    <div class="card-row justify-content-end">
+      <app-button
+        class="mt-md"
+        [label]="'Сохранить'"
+        [disabled]="saveDisabled()"
+        (click)="save()"
+      ></app-button>
     </div>
   </div>
 </div>
+
+<ng-template #readMode>
+  <div class="container flex">
+    <div class="w-30-p">
+      <ng-container *ngTemplateOutlet="book_cover"></ng-container>
+    </div>
+    <div class="w-70-p">
+      <div class="flex-row justify-content-between read-card-title">
+         {{entityStoreService.entity.title}}
+         <app-button class="my-auto" [label]="'Отредактировать книгу'" (click)="onEditClick()"></app-button>
+      </div>
+      <h3 class="read-card-subtitle w-100-p">
+        {{entityStoreService.entity.fullAuthorsNames}}
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="27" viewBox="0 0 26 27" fill="none">
+          <path d="M13 1.49986L15.3697 9.44788C15.6225 10.2955 16.4019 10.8764 17.2864 10.8764H24.9895L18.7005 15.5726C18.0187 16.0817 17.7337 16.9666 17.9902 17.778L20.3812 25.3411L14.1966 20.7229C13.4869 20.193 12.5131 20.1929 11.8034 20.7229L5.61884 25.3411L8.00981 17.778C8.26631 16.9666 7.98131 16.0817 7.29948 15.5726L1.01051 10.8764L8.71363 10.8764C9.5981 10.8764 10.3775 10.2955 10.6303 9.44786L13 1.49986Z" fill="#E3D4C6" stroke="#E3D4C6" stroke-width="2"/>
+        </svg>
+        <span>{{entityStoreService.entity.rating}}</span>
+      </h3>
+      <app-tabs>
+        <app-tab tabTitle="О книге">
+          <section class="book-description">{{entityStoreService.entity.description}}</section>
+          <span><span class="genre" *ngFor="let genre of entityStoreService.entity.genres">{{ genre }}</span></span>
+        </app-tab>
+        <app-tab tabTitle="Впечатления">
+          Пока нет данных (
+        </app-tab>
+        <app-tab tabTitle="Экземпляры">
+          Пока нет данных (
+        </app-tab>
+      </app-tabs>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #book_cover>
+  <img class="book_cover" [src]="getControl(CONTROL_NAMES.PIC_FILE_NAME).value"/>
+  <span class="flex w-80-p mt-md" *ngIf="!isReadOnlyMode$.value">
+    <app-button class="mx-auto" [label]="'Удалить обложку'" (click)="clearCover()"></app-button>
+  </span>
+</ng-template>

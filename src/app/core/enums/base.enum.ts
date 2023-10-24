@@ -10,7 +10,7 @@ export abstract class BaseEnum {
   /**
    * Значение перечисления.
    */
-  abstract id: any;
+  abstract guid: any;
   /**
    * Наименование перечисления.
    */
@@ -33,7 +33,7 @@ export abstract class BaseEnum {
       return null;
     }
     if (baseEnum instanceof BaseEnum) {
-      return baseEnum.id;
+      return baseEnum.guid;
     }
     return baseEnum;
   }

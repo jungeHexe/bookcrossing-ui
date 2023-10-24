@@ -15,6 +15,16 @@ export class ObjectUtils {
       .forEach(([key, value]) => objClass[key] = value);
   }
 
+  static objectToCamelCase(serverObject: any): any {
+    let result: any = {};
+    for (let key in serverObject) {
+      if (serverObject.hasOwnProperty(key)) {
+        result[key.replace(/(\_\w)/g, (el) =>  el[1].toUpperCase())] = serverObject[key];
+      }
+    }
+    return result;
+  }
+
   /**
    * Удалить из объекта все null/undefined поля
    * @param obj объект
@@ -102,8 +112,8 @@ export class ObjectUtils {
    * @param item элемент.
    * @return индекс элемента в массиве.
    */
-  static addToArray(array: { id: string }[], item: { id: string }): number {
-    const index = array.findIndex(o => o.id === item.id);
+  static addToArray(array: { guid: string }[], item: { guid: string }): number {
+    const index = array.findIndex(o => o.guid === item.guid);
     if (index === -1) {
       array.push(item);
     } else {

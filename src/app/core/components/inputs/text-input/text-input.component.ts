@@ -19,4 +19,7 @@ export class TextInputComponent {
   
   @Output() onBlur = new EventEmitter<FocusEvent>();
   
+  isRequired(): boolean {
+    return this.control.isRequired();
+  }
 }

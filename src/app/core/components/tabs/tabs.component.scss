@@ -1,0 +1,34 @@
+@import "src/assets/styles/colors";
+
+.tabs-container {
+  height: 100%;
+  padding: 20px;
+  font-family: Poppins, sans-serif;
+}
+
+.tabs-container .tab{
+  padding: 10px 40px;
+  text-align:center;
+  width: 100%;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.tabs-container .tab.active{
+  border-bottom: 2px solid $brown;
+  border-top: 2px solid $coffee;
+  border-left: 2px solid $coffee;
+  border-right: 2px solid $coffee;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.nav-tabs {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  
+  li {
+    display: inline;
+  }
+}

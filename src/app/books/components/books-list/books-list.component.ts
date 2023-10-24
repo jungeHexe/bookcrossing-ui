@@ -6,6 +6,9 @@ import {map, Observable } from 'rxjs';
 import { Book } from '../../domain/book.model';
 import {AbstractList} from "../../../core/domain/abstract-list";
 import {UntilDestroy} from "@ngneat/until-destroy";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AppPathConstants} from "../../../app.constants";
+import {BookStoreService} from "../../store/book-store.service";
 
 @Component({
   selector: 'app-books-list',
@@ -16,10 +19,12 @@ import {UntilDestroy} from "@ngneat/until-destroy";
 export class BooksListComponent extends AbstractList<Book> {
   
   constructor(
+    router: Router,
+    route: ActivatedRoute,
     private readonly listFilterStoreService: BooksListFilterStoreService,
     private readonly entityService: BooksService,
   ) {
-    super();
+    super(router, route);
     this.repository = new BooksListRepository(
       this.entityService,
       this.listFilterStoreService,
@@ -32,5 +37,5 @@ export class BooksListComponent extends AbstractList<Book> {
     this.repository.paginationData.page = page;
     this.data$ = this.repository.getData();
   }
- 
+
 }

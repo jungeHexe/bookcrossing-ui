@@ -15,7 +15,7 @@ export class OperationStatus extends BaseEnum {
   /**
    * Значение перечисления.
    */
-  id: OperationStatusEnum;
+  guid: OperationStatusEnum;
   /**
    * Наименование перечисления.
    */
@@ -26,7 +26,7 @@ export class OperationStatus extends BaseEnum {
     if (!operationStatusEnum) {
       return;
     }
-    this.id = operationStatusEnum;
+    this.guid = operationStatusEnum;
     this.name = OperationStatus.OperationStatusDictionary.get(operationStatusEnum).name;
   }
 
