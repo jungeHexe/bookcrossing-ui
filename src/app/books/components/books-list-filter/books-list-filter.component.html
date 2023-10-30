@@ -1,0 +1,30 @@
+<div class="list-filter p-relative">
+  <app-text-input
+    class="w-25-p"
+    [label]="'Название книги'"
+    [placeholder]="'Введите название книги'"
+    [control]="getControl(controlNames.BOOK_TITLE)"  
+  ></app-text-input>
+  <app-text-input
+    class="w-25-p"
+    [label]="'Автор книги'"
+    [placeholder]="'Введите ФИО автора через пробел'"
+    [control]="getControl(controlNames.AUTHOR_NAME)" 
+  ></app-text-input>
+  <app-select-input
+    class="w-25-p"
+    [label]="'Жанр книги'"
+    [placeholder]="'Выберите жанр книги'"
+    [selectorType]="'genre'"
+    [multi]="true"
+    [control]="getControl(controlNames.GENRES)"
+  ></app-select-input>
+  <app-select-input
+    class="w-25-p"
+    [label]="'Сортировать по'"
+    [placeholder]="'Выберите параметр сортировки'"
+    [selectorType]="'book_sort'"
+    [control]="getControl(controlNames.ORDER_BY)"
+  ></app-select-input>
+  <app-button [label]="'Искать'" (click)="onSearchClick.emit()"></app-button>
+</div>

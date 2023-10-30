@@ -1,10 +1,11 @@
 <header class="flex">
-  <img src="/assets/images/icon.png"/>
+  <span (click)="goToLanding()"><img src="/assets/images/icon.png"/>Litransaction</span>
   <div>
     <nav>
-        <a *ngIf="mode==='landing'" router-link="/about">О нас</a>
-        <a *ngIf="mode==='landing'" router-link="/what">O букроссинге</a>
-        <app-button *ngIf="mode==='landing'" [label]="'Посетить'"></app-button>
+        <a routerLink="/books" routerLinkActive="active-link">Книги</a>
+        <a routerLink="/places" routerLinkActive="active-link">Места</a>
+        <a routerLink="/requests" routerLinkActive="active-link">Объявления</a>
+        <a routerLink="/posts" routerLinkActive="active-link">Публикации</a>
     </nav>
   </div>
 </header>

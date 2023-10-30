@@ -1,8 +1,8 @@
-@import 'src/app/core/styles/colors';
+@import 'src/assets/styles/colors';
 
 
-@mixin font-style {
-  font-family: 'Poppins';
+:host {
+  font-family: 'Poppins', sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -10,21 +10,22 @@
 }
 
 input, textarea {
+  width: 100%;
   border: 1px solid $coffee;
   border-radius: 5px;
   background-color: transparent;
-  height: 30px;
-  padding: 10px;
+  height: 35px;
+  padding: 5px 10px;
   color: rgba(227, 212, 198, 0.41);
   box-sizing: border-box;
-  
-  @include font-style
+  font-size: 16px;
+}
 
+textarea {
+  height: auto;
 }
 
 label {
   padding-left: 10px;
   color: #E3D4C6;
-  
-  @include font-style
 }

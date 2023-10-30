@@ -1,0 +1,21 @@
+.ngx-pagination a, .ngx-pagination button, .ngx-pagination .current{
+   color: $white !important;
+   font-family: 'Poppins', sans-serif !important;
+   
+   &:hover {
+     color: $brown !important;
+     background-color: $white !important;
+   }
+}
+
+.ngx-pagination .current {
+  background: $brown !important;
+  border: 1px solid $white;
+}
+
+.ngx-pagination .disabled {
+  color: $coffee !important;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+

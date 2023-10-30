@@ -1,5 +1,5 @@
 export class UserStoreService {
   static isAuthorized() {
-    return false;
+    return true;
   }
 }

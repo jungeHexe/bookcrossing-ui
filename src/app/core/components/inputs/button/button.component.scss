@@ -1,7 +1,8 @@
-@import 'src/app/core/styles/colors';
+@import 'src/assets/styles/colors';
 
 .btn {
   height: 35px;
+  margin: auto;
   width: auto;
   box-sizing: border-box;
   padding: 5px 25px;
@@ -20,12 +21,12 @@
   color: $brown;
   background-color: $coffee;
 
-  &:hover {
+  &:enabled:hover {
     color: $coffee;
     box-shadow: inset 200px 0 0 0 adjust-hue($brown, 45deg);
   }
 
-  &:active {
+  &:enabled:active {
     color: $brown;
     box-shadow: none;
   }
@@ -35,13 +36,19 @@
   color: $coffee;
   background: none;
 
-  &:hover {
+  &:enabled:hover {
     color: $brown;
     box-shadow: inset 200px 0 0 0 adjust-hue($coffee, 45deg);
   }
 
-  &:active {
+  &:enabled:active {
     color: $coffee;
     box-shadow: none;
   }
+}
+
+button:disabled,
+button[disabled]{
+  background-color: #cccccc;
+  color: #666666;
 }
