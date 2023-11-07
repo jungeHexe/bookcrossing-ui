@@ -40,7 +40,6 @@ export class BookCardComponent extends BaseEditorComponent<Book> implements OnIn
     if (this.entityStoreService.loadedEntity && !this.entityStoreService.entity) {
       this.entityStoreService.entity = new Book(this.entityStoreService.loadedEntity);
     }
-    console.log(this.entityStoreService.entity, this.entityStoreService.loadedEntity)
   }
 
   ngOnInit(): void {
