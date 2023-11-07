@@ -11,6 +11,7 @@ export class TextInputComponent {
 
   @Input() label = '';
   @Input() placeholder = 'Введите значение';
+  @Input() type: 'password' | 'text' | 'email' = 'text';
   @Input() nativeElement: 'input' | 'textarea' = 'input';
   @Input() control = new CustomFormControl();
   @Input() disabled = false;

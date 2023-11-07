@@ -5,18 +5,18 @@ import {BooksListComponent} from "./components/books-list/books-list.component";
 import {BookCardComponent} from "./components/book-card/book-card.component";
 import {BooksBreadcrumbs} from "./books.contants";
 import { BookEditorResolver } from './resolver/book-editor.resolver';
+import { AuthGuard } from '../core/guard/auth.guard';
 
 const routes: Routes = [
   {
     path: AppPathConstants.EMPTY,
-    //    canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     component: BooksListComponent,
   },
   {
     path: `${AppPathConstants.CREATE}`,
     component: BookCardComponent,
-//  canActivate: [AuthGuard],
-//  canDeactivate: [DirtyCheckGuard],
+    canActivate: [AuthGuard],
     data: {
       breadcrumb: {
         label: BooksBreadcrumbs.NEW_BOOK,
@@ -27,8 +27,7 @@ const routes: Routes = [
   {
     path: `${AppPathConstants.EDIT}/${AppPathConstants.ID_PARAM}`,
     component: BookCardComponent,
-    //  canActivate: [AuthGuard],
-    //  canDeactivate: [DirtyCheckGuard],
+    canActivate: [AuthGuard],
     data: {
       breadcrumb: {
         label: BooksBreadcrumbs.EDIT_BOOK,
@@ -42,8 +41,7 @@ const routes: Routes = [
   {
     path: `${AppPathConstants.READ}/${AppPathConstants.ID_PARAM}`,
     component: BookCardComponent,
-    //  canActivate: [AuthGuard],
-    //  canDeactivate: [DirtyCheckGuard],
+    canActivate: [AuthGuard],
     data: {
       currentAction: ObjectFormState.READ,
     },

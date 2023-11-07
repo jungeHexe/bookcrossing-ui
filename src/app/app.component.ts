@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {UserStoreService} from "./core/stores/user-store.service";
+import { UserStoreService } from "./core/stores/user-store.service";
 
 @Component({
   selector: 'app-root',
@@ -8,5 +8,7 @@ import {UserStoreService} from "./core/stores/user-store.service";
 })
 export class AppComponent {
 
-  isAuthorized = UserStoreService.isAuthorized();
+  get isAuthorized() {
+    return UserStoreService.isAuthorized();
+  }
 }

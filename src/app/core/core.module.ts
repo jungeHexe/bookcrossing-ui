@@ -10,6 +10,7 @@ import { NgxPaginationModule } from "ngx-pagination";
 import { SelectInputComponent } from './components/inputs/select-input/select-input.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { TabComponent } from './components/tabs/tab/tab.component';
+import { LoginComponent } from './components/login/login.component';
 
 const components = [
   TextInputComponent,
@@ -31,6 +32,7 @@ const pipes = [];
     ...components,
     HeaderComponent,
     FooterComponent,
+    LoginComponent,
     // ...directives,
     //...pipes,
     ],

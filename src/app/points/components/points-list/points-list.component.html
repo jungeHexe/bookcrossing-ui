@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="flex justify-content-between">
+    <fieldset class="list-title"><legend>Точки буккроссинга в Москве</legend></fieldset>
+  </div>
+  <div class="flex-row justify-content-between">
+    <div class="points-list">
+      <ol *ngFor="let point of pointsStoreService.points; let i = index">
+        <li [ngClass]="(selectedItem == i)? 'active': ''" (click)="activatePoint(i)" [id]="i">
+          <div class="f-20">{{point.title}}</div>
+          <div *ngIf="selectedItem === i" class="address-block">{{ point.address}}</div>
+        </li>
+      </ol>
+    </div>
+    <div class="container-map">
+      <ya-map [center]="[55.751952, 37.600739]" [zoom]="12">
+        <ng-container *ngFor="let point of pointsStoreService.points; let i = index ">
+          <ya-placemark
+            [geometry]="[point.longitude, point.latitude]"
+            [properties]="{ balloonContent: point.ballon, hintContent: point.title }"
+            [options]="placemarkOptions"
+          ></ya-placemark>
+        </ng-container>
+      </ya-map>
+    </div>
+  </div>
+</div>

@@ -7,20 +7,18 @@ import {Book} from "../domain/book.model";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {ErrorHandlerService} from "../../core/services/error-handler.service";
 import {SERVER_URL} from "../../app.constants";
-import { Author } from "src/app/core/domain/author.model";
-import { Genre } from "src/app/core/domain/genre.model";
 import {OperationStatus, OperationStatusEnum} from "../../core/enums/operation-status.enum";
 
 @Injectable({providedIn: 'root'})
 export class BooksService extends EntityService<Book> {
-  
+
   constructor(
     private readonly http: HttpClient,
     private readonly errorHandler: ErrorHandlerService,
   ) {
     super();
   }
-  
+
   search(params: HttpParams): Observable<SearchResult<Book>> {
     return this.http.get(`${SERVER_URL}books/all`, {params})
       .pipe(

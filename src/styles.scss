@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
 
-
+@import 'node_modules/angular-notifier/styles';
 @import 'assets/styles/colors';
 @import 'assets/styles/paginator';
 @import 'assets/styles/spaces';
@@ -92,6 +92,10 @@ footer {
   justify-content: end;
 }
 
+.justify-content-center {
+  justify-content: center;
+}
+
 .container {
   padding: 30px 70px;
 
@@ -158,4 +162,16 @@ footer {
   font-size: 12px;
   padding: 5px 20px;
   box-sizing: border-box;
+}
+
+.gap-md {
+  grid-gap: 15px;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.invalid {
+  border: 1px solid red !important;
 }

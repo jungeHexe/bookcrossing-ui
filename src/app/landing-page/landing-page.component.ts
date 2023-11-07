@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppPathConstants } from '../app.constants';
 
 @Component({
   selector: 'app-landing-page',
@@ -7,8 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    readonly router: Router,
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  toLoginForm(): void {
+    this.router.navigate([AppPathConstants.LOGIN]).then();
   }
 }

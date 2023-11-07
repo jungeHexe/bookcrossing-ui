@@ -1,0 +1,50 @@
+@import "src/assets/styles/colors";
+
+.container-map {
+  width: 60%;
+  height: 70vh;
+}
+fieldset.list-title {
+  width: 100%;
+}
+
+ol {
+  list-style: none;
+
+  li {
+    height: auto;
+    padding: 15px;
+    color: $brown;
+    background-color: $coffee;
+    transition: all 0.3s;
+    box-sizing: border-box;
+
+    &.active {
+      border: 1px solid $coffee;
+      background-color: unset;
+      color: $coffee
+    }
+
+    &:hover {
+      border: 1px solid $coffee;
+      background-color: unset;
+      color: $coffee
+    }
+  }
+}
+
+.points-list {
+  width: 35%;
+  height: 70vh;
+  overflow: visible;
+}
+
+.f-20 {
+  font-size: 20px;
+}
+
+.address-block {
+  margin-top: 10px;
+  padding-top: 5px;
+  border-top: 1px solid $coffee;
+}
