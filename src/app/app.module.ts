@@ -4,9 +4,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import {CoreModule} from "./core/core.module";
-import {NgxPaginationModule} from "ngx-pagination";
+import { AuthInterceptor } from './core/interceptor/auth.interceptor';
+import { NotifierModule } from 'angular-notifier';
 
 @NgModule({
   declarations: [
@@ -17,10 +18,17 @@ import {NgxPaginationModule} from "ngx-pagination";
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    NotifierModule.withConfig({position: {horizontal: { position: 'right' }, vertical: { position: 'top' }}}),
     CoreModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

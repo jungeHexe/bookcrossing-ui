@@ -1,0 +1,76 @@
+<div class="flex-row">
+  <img class="login-page-img" src="/assets/images/registration.jpg">
+  <div class="login-page-container">
+    <div class="flex-row justify-content-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="39" height="46" viewBox="0 0 39 46" fill="none">
+        <path d="M37.3897 32.6879L21.2855 44L2.06005 37.5161C2.06005 37.5161 1.13683 37.0358 1.20149 34.1288C1.26614 31.2218 2.54952 30.4508 2.54952 30.4508L21.2855 35.6834L37.0767 24.4598L37.7508 23.8784" stroke="#E3D4C6" stroke-width="2" stroke-linecap="round"/>
+        <path d="M20.6919 6.19617L30.2244 9.41916L28.098 11.1128L18.4131 7.83926L20.6919 6.19617Z" fill="#E3D4C6"/>
+        <path d="M2.67042 30.4508C2.67042 30.4508 1.23412 30.337 1.01747 26.5832C0.800826 22.8294 2.67042 22.1342 2.67042 22.1342L21.1657 27.5564L37.0211 16.3328" stroke="#E3D4C6" stroke-width="2" stroke-linecap="round"/>
+        <path d="M2.54991 21.7424C2.54991 21.7424 1.2741 21.5402 1.20188 17.7737C1.12967 14.0072 2.54991 14.0072 2.54991 14.0072M2.54991 14.0072L20.1225 2L36.8364 7.52332L21.3501 19.1387L2.54991 14.0072Z" stroke="#E3D4C6" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <h2>Litransaction</h2>  
+    </div>
+    <div class="flex-row justify-content-center mb-md">
+      <app-text-input
+        *ngIf="this.isRegistrationForm$ | async"
+        class="w-50-p"
+        [label]="'Имя пользователя'"
+        [placeholder]="'Пришло время вспомнить свое настоящее имя'"
+        [control]="getControl(CONTROL_NAMES.NAME)"
+      ></app-text-input>
+    </div>
+    <div class="flex-row justify-content-center mb-md">
+      <app-text-input
+        class="w-50-p"
+        [label]="'Логин'"
+        [placeholder]="'Придумай оригинальный ник'"
+        [control]="getControl(CONTROL_NAMES.LOGIN)"
+      ></app-text-input>
+    </div>
+    <div class="flex-row justify-content-center mb-md">
+      <app-text-input
+        *ngIf="this.isRegistrationForm$ | async"
+        class="w-50-p"
+        [label]="'E-mail'"
+        [type]="'email'"
+        [placeholder]="'Обещаем не присылать спам, это только для слежки'"
+        [control]="getControl(CONTROL_NAMES.EMAIL)"
+      ></app-text-input>
+    </div>
+    <div class="flex-row gap-md mb-md w-50-p mx-auto">
+      <app-text-input
+        class="flex-grow-1"
+        [label]="'Пароль'"
+        [type]="'password'"
+        [placeholder]="'Введи цифры, буквы, иероглифы'"
+        [control]="getControl(CONTROL_NAMES.PASSWORD)"
+      ></app-text-input>
+      <app-text-input
+        *ngIf="this.isRegistrationForm$ | async"
+        class="flex-grow-1"
+        [label]="'Повторите пароль'"
+        [type]="'password'"
+        [placeholder]="'Введи цифры, буквы, иероглифы'"
+        [control]="getControl(CONTROL_NAMES.REPEATED_PASSWORD)"
+      ></app-text-input>
+    </div>
+    <div class="flex-row gap-md mb-md mt-md justify-content-center">
+      <app-button
+        *ngIf="!(this.isRegistrationForm$ | async)"
+        [label]="'Войти в профиль'"
+        (click)="login()"
+      ></app-button>
+      <app-button
+        [type]="'second'"
+        [label]="this.isRegistrationForm$.value ? 'Я уже буккроссер' : 'Стать буккроссером'"
+        (click)="this.isRegistrationForm$.next(!this.isRegistrationForm$.value)"
+      ></app-button>
+      <app-button
+        *ngIf="this.isRegistrationForm$ | async"
+        [label]="'Создать профиль'"
+        [disabled]="isLoading$ | async"
+        (click)="register()"
+      ></app-button>
+    </div>
+  </div>
+</div>

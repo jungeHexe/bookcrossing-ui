@@ -3,6 +3,7 @@ export class AppPathConstants {
   static readonly CREATE = 'create';
   static readonly EDIT = 'edit';
   static readonly READ = 'read';
+  static readonly LOGIN = 'login';
   static readonly ID_PARAM = ':id';
   static readonly WILDCARD = '**';
   static readonly MAIN_MENU = '/';

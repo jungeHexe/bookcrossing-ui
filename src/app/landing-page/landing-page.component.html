@@ -6,14 +6,14 @@
             <a href="#about">О нас</a>
             <a href="#genres">Жанры</a>
             <a href="#path">Узнать свой путь</a>
-            <app-button [label]="'Посетить'"></app-button>
+            <app-button [label]="'Посетить'" (click)="toLoginForm()"></app-button>
         </nav>
       </div>
   </header>
   <div class="content-block">
      <h1>Litransaction</h1>
      <section>Присоединяйся к нашему культурному сообществу и развивай буккроссинг вместе с нами!</section>
-     <app-button [label]="'Присоединиться'" [type]="'second'"></app-button>
+     <app-button [label]="'Присоединиться'" [type]="'second'" (click)="toLoginForm()"></app-button>
   </div>
 </div>
 <div class="block-two content-block" id="about">

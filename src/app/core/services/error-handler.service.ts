@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
+import {AlertService} from "./alert.service";
 
 @Injectable({ providedIn: 'root' })
 export class ErrorHandlerService {
@@ -19,6 +20,7 @@ export class ErrorHandlerService {
   ]);
 
   constructor(
+    private readonly alertService: AlertService,
   ) {
   }
 
@@ -41,6 +43,7 @@ export class ErrorHandlerService {
 
   public handleErrorAndNull(error: HttpErrorResponse, prefix: string, id?: string): Observable<any> {
     const message = this.prepareMessage(error, prefix, id);
+    this.alertService.showNotification('error', message);
     console.error(message, error);
     return of(null);
   }
@@ -55,13 +58,13 @@ export class ErrorHandlerService {
     }
 
     if (error.status === 401) {
-      return ErrorHandlerService.formatMessage(prefix, this.MESSAGES.get(this.NOT_AUTHORIZED), id);
+      return ErrorHandlerService.formatMessage(prefix, error.error.detail ?? this.MESSAGES.get(this.NOT_AUTHORIZED), id);
     }
 
     if (error.status === 404) {
-      return ErrorHandlerService.formatMessage(prefix, this.MESSAGES.get(this.NOT_FOUND), id);
+      return ErrorHandlerService.formatMessage(prefix, error.error.detail ?? this.MESSAGES.get(this.NOT_FOUND), id);
     }
 
-    return ErrorHandlerService.formatMessage(prefix, this.MESSAGES.get(this.ERROR_IN_UNKNOWN_FORMAT), id);
+    return ErrorHandlerService.formatMessage(prefix, error.error.detail ?? this.MESSAGES.get(this.ERROR_IN_UNKNOWN_FORMAT), id);
   }
 }
