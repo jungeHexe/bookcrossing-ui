@@ -1,11 +1,12 @@
 <header class="flex">
   <span (click)="goToLanding()"><img src="/assets/images/icon.png"/>Litransaction</span>
-  <div>
+  <div class="flex justify-content-end">
     <nav>
         <a routerLink="/books" routerLinkActive="active-link">Книги</a>
         <a routerLink="/places" routerLinkActive="active-link">Места</a>
         <a routerLink="/requests" routerLinkActive="active-link">Объявления</a>
         <a routerLink="/posts" routerLinkActive="active-link">Публикации</a>
     </nav>
+    <app-button class="my-auto" [label]="'Временная кнопка выхода'" (click)="logout()"></app-button>
   </div>
 </header>
