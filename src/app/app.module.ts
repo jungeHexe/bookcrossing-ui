@@ -8,6 +8,7 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import {CoreModule} from "./core/core.module";
 import { AuthInterceptor } from './core/interceptor/auth.interceptor';
 import { NotifierModule } from 'angular-notifier';
+import {AngularYandexMapsModule} from "angular8-yandex-maps";
 
 @NgModule({
   declarations: [

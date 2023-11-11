@@ -23,6 +23,12 @@ const routes: Routes = [
         loadChildren: () => import('./books/books.module')
               .then(m => m.BooksModule),
       },
+      {
+        path: AppPathConstants.BOOKCROSSING_POINTS,
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./points/points.module')
+              .then(m => m.PointsModule),
+      },
     ]
   },
 ];
