@@ -9,7 +9,7 @@ export class UserStoreService {
    * Текущий пользователь.
    */
   static get user(): User {
-    return this.user$.value ?? User.toClientObject(localStorage.getItem('user'));
+    return this.user$.value ?? User.toClientObject(JSON.parse(localStorage.getItem('user')));
   }
 
   /**

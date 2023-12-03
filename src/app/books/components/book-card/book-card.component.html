@@ -72,7 +72,7 @@
       </h3>
       <app-tabs>
         <app-tab tabTitle="О книге">
-          <section class="book-description">{{entityStoreService.entity.description}}</section>
+          <section class="read-card-description">{{entityStoreService.entity.description}}</section>
           <span><span class="genre" *ngFor="let genre of entityStoreService.entity.genres">{{ genre }}</span></span>
         </app-tab>
         <app-tab tabTitle="Впечатления">
@@ -88,7 +88,7 @@
 
 
 <ng-template #book_cover>
-  <img class="book_cover" [src]="getControl(CONTROL_NAMES.PIC_FILE_NAME).value"/>
+  <img class="img_block" [src]="getControl(CONTROL_NAMES.PIC_FILE_NAME).value"/>
   <span class="flex w-80-p mt-md" *ngIf="!isReadOnlyMode$.value">
     <app-button class="mx-auto" [label]="'Удалить обложку'" (click)="clearCover()"></app-button>
   </span>

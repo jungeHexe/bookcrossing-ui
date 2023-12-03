@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {EventEmitter, OnDestroy} from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, iif } from 'rxjs';
-import { first, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { BaseDomain } from '../domain/base-domain.model';
 import { EntityStoreService } from '../stores/entity-store.service';
 import { EntityService } from '../services/entity.service';
@@ -73,6 +73,10 @@ export class BaseEditorComponent<T extends BaseDomain> implements OnDestroy {
    * Заголовок карточки
    */
   cardTitle: string;
+  /**
+   * Адрес модуля
+   */
+  listUrl: string = null;
 
   constructor(
     protected readonly router: Router,
@@ -101,12 +105,12 @@ export class BaseEditorComponent<T extends BaseDomain> implements OnDestroy {
         this.entityStoreService.directSave$.next(false);
       }
     }
-    
+
     if (route?.snapshot?.data?.breadcrumb?.label) {
       this.cardTitle = route.snapshot.data.breadcrumb.label;
     }
   }
-  
+
   ngOnDestroy(): void {
     if (this.isReadOnlyMode$.value) {
       this.entityStoreService.entity = null;
@@ -237,10 +241,10 @@ export class BaseEditorComponent<T extends BaseDomain> implements OnDestroy {
   protected onCreateNext(): void {
     return this.clearStore();
   }
-  
+
   onEditClick(): void {
     this.router.navigate([
-      AppPathConstants.BOOKS,
+      this.listUrl,
       AppPathConstants.EDIT,
       this.entityStoreService.entity.guid,
       ]).then();

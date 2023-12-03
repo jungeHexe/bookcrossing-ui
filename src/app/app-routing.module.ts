@@ -24,6 +24,12 @@ const routes: Routes = [
               .then(m => m.BooksModule),
       },
       {
+        path: AppPathConstants.PROFILE,
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./profile/profile.module')
+          .then(m => m.ProfileModule),
+      },
+      {
         path: AppPathConstants.BOOKCROSSING_POINTS,
         canActivate: [AuthGuard],
         loadChildren: () => import('./points/points.module')

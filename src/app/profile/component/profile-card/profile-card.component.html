@@ -1,0 +1,114 @@
+<div class="container flex" *ngIf="!isReadOnlyMode$.value; else readMode">
+  <div class="w-30-p">
+    <div class="upload-img" *ngIf="!getControl(CONTROL_NAMES.AVATAR).value; else avatar">
+      <input type="file" id='upload' (change)="this.onFileSelected($event)"/>
+      <label for="upload" class="button">Выбрать аватар</label>
+    </div>
+  </div>
+  <div class="w-70-p flex-column">
+    <h3 class="card-title">Редактирование профиля</h3>
+    <div class="card-row">
+      <app-text-input
+        class="w-100-p"
+        [label]="'Имя пользователя'"
+        [placeholder]="'Введите имя пользователя'"
+        [control]="getControl(CONTROL_NAMES.NAME)"
+      ></app-text-input>
+    </div>
+    <div class="card-row">
+      <app-text-input
+        class="w-100-p"
+        [label]="'E-mail'"
+        [placeholder]="'Введите e-mail'"
+        [control]="getControl(CONTROL_NAMES.EMAIL)"
+      ></app-text-input>
+    </div>
+    <div class="card-row">
+      <app-text-input
+        class="w-100-p"
+        [label]="'О себе'"
+        [nativeElement]="'textarea'"
+        [placeholder]="'Введите информацию о себе'"
+        [control]="getControl(CONTROL_NAMES.ABOUT)"
+      ></app-text-input>
+    </div>
+    <div class="divider"></div>
+    <div>
+      <div class="card-subtitle">Смена пароля</div>
+      <div class="card-row">
+        <app-text-input
+          class="w-50-p"
+          [label]="'Новый пароль'"
+          [placeholder]="'Введите новый пароль'"
+          [control]="getControl(CONTROL_NAMES.PASSWORD)"
+        ></app-text-input>
+        <app-text-input
+          class="w-50-p"
+          [label]="'Повтор пароля'"
+          [placeholder]="'Введите повтор пароля'"
+          [control]="getControl(CONTROL_NAMES.REPEATED_PASSWORD)"
+        ></app-text-input>
+      </div>
+      <app-button
+        class="mt-md"
+        [label]="'Сменить'"
+      ></app-button>
+    </div>
+    <div>
+      <div class="card-subtitle">Удалить аккаунт</div>
+      <p>Подумай дважды перед нажатием данной кнопки. Мы будем скучать по тебе...</p>
+      <app-button
+        class="mt-md"
+        [label]="'Удалить'"
+      ></app-button>
+    </div>
+    <div class="card-row justify-content-end">
+      <app-button
+        class="mt-md"
+        [label]="'Сохранить'"
+        [disabled]="saveDisabled()"
+        (click)="save()"
+      ></app-button>
+    </div>
+  </div>
+</div>
+
+<ng-template #readMode>
+  <div class="container flex">
+    <div class="w-30-p">
+      <ng-container *ngTemplateOutlet="avatar"></ng-container>
+    </div>
+    <div class="w-70-p flex-column">
+      <h1 class="flex-row justify-content-between read-card-title">
+        {{entityStoreService.entity.name}}
+        <app-button class="my-auto" [label]="'Отредактировать профиль'" (click)="onEditClick()"></app-button>
+      </h1>
+      <app-tabs>
+        <app-tab tabTitle="Личные данные">
+          <section class="read-card-description">{{entityStoreService.entity.about}}</section>
+        </app-tab>
+        <app-tab tabTitle="Блог">
+          Пока нет данных (
+        </app-tab>
+        <app-tab tabTitle="Экземпляры">
+          Пока нет данных (
+        </app-tab>
+      </app-tabs>
+      <div class="card-row justify-content-end">
+        <app-button
+          class="mt-md"
+          [label]="'Выйти из профиля'"
+          (click)="logout()"
+        ></app-button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #avatar>
+  <img class="img_block" [src]="getControl(CONTROL_NAMES.AVATAR).value"/>
+  <span class="flex w-80-p mt-md" *ngIf="!isReadOnlyMode$.value">
+    <app-button class="mx-auto" [label]="'Удалить аватар'" (click)="getControl(CONTROL_NAMES.AVATAR).setValue(null)"></app-button>
+  </span>
+</ng-template>

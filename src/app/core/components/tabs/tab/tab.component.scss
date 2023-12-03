@@ -3,7 +3,7 @@
 .tab-content {
   margin-top: 9px;
   padding: 40px 0;
-  height: 85%;
+  flex-grow: 1;
   border-top: 2px solid $coffee;
   z-index: 800;
 }
