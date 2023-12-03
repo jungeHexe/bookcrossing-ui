@@ -6,7 +6,6 @@ import {CustomFormControl} from "../custom-form.control";
 import {FormUtils} from "../../utils/form-utils";
 import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
 import {BehaviorSubject, distinctUntilChanged} from "rxjs";
-import {validators} from "../../services/validation.service";
 import {AuthentificationService} from "../../services/authentification.service";
 import {Router} from "@angular/router";
 import { AppPathConstants } from 'src/app/app.constants';
@@ -26,9 +25,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
   readonly CONTROL_NAMES = UserControlNames;
   readonly formGroup = new FormGroup({});
   readonly isLoading$ = new BehaviorSubject<boolean>(false);
-  
+
   readonly isRegistrationForm$ = new BehaviorSubject<boolean>(false);
-  
+
   constructor(
     private readonly router: Router,
     readonly loginFormStoreService: LoginFormStoreService,
@@ -46,7 +45,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       [this.CONTROL_NAMES.PASSWORD]: new CustomFormControl(null, [
         Validators.required,
       ]),
-      [this.CONTROL_NAMES.REPEATED_PASSWORD]: new CustomFormControl(),
+      [this.CONTROL_NAMES.NEW_PASSWORD]: new CustomFormControl(),
     };
     FormUtils.addControls(this.formGroup, controls);
   }
@@ -63,7 +62,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         this.loginFormStoreService.loginForm = { login: object.login, password: object.password };
       });
   }
-  
+
   register(): void {
     if (!FormUtils.deepValidateForm(this.formGroup)) {
       return;
@@ -82,7 +81,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         }
       });
   }
-  
+
   login(): void {
     if (!FormUtils.deepValidateForm(this.formGroup)) {
       return;
@@ -94,17 +93,20 @@ export class LoginComponent implements OnInit, AfterViewInit {
         this.isLoading$.next(false);
         if (value) {
           UserStoreService.setUser(value);
-          this.router.navigate([AppPathConstants.BOOKS]).then();
+          this.router.navigate(value.avatar ? [
+            AppPathConstants.PROFILE,
+            value.guid,
+          ] : [AppPathConstants.PROFILE, AppPathConstants.EDIT, value.guid]).then();
         }
       });
   }
-  
+
   checkPasswordFields(): boolean {
-    return this.loginFormStoreService.registrationForm.password === this.loginFormStoreService.registrationForm.repeatedPassword;
+    return this.loginFormStoreService.registrationForm.password === this.loginFormStoreService.registrationForm.newPassword;
   }
-  
+
   getControl(controlName: string): CustomFormControl {
     return FormUtils.getControl(this.formGroup, controlName);
   }
-  
+
 }

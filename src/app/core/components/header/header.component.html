@@ -7,6 +7,8 @@
         <a routerLink="/requests" routerLinkActive="active-link">Объявления</a>
         <a routerLink="/posts" routerLinkActive="active-link">Публикации</a>
     </nav>
-    <app-button class="my-auto" [label]="'Временная кнопка выхода'" (click)="logout()"></app-button>
+    <a class="hover-border-none" routerLinkActive="profile-active-link" [routerLink]="['profile', UserStoreService.user.guid]" >
+      <img class="profile-btn" [src]="getUserAvatar()"/>
+    </a>
   </div>
 </header>

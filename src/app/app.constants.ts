@@ -9,6 +9,7 @@ export class AppPathConstants {
   static readonly MAIN_MENU = '/';
 
   static readonly BOOKS = 'books';
+  static readonly PROFILE = 'profile';
   static readonly LANDING = 'landing';
   static readonly BOOKCROSSING_POINTS = 'points';
 }

@@ -1,10 +1,16 @@
 import { ObjectUtils } from "../utils/object-utils";
 import {BaseDomain} from "./base-domain.model";
 
+export interface ChangePasswordParams {
+  guid: string;
+  oldPassword: string;
+  newPassword: string;
+}
+
 export class UserControlNames {
   static readonly LOGIN: keyof User = 'login';
   static readonly PASSWORD: keyof User = 'password';
-  static readonly REPEATED_PASSWORD: keyof User = 'repeatedPassword';
+  static readonly NEW_PASSWORD: keyof User = 'newPassword';
   static readonly ABOUT: keyof User = 'about';
   static readonly EMAIL: keyof User = 'email';
   static readonly AVATAR: keyof User = 'avatar';
@@ -15,12 +21,12 @@ export class UserControlNames {
 export class User extends BaseDomain {
   login: string = null;
   password: string = null;
-  repeatedPassword: string = null;
+  newPassword: string = null;
   about: string = null;
   email: string = null;
   avatar: string = null;
   phoneNumber: string = null;
-  
+
   constructor(entity: Partial<User>) {
     super();
     if (!entity) {

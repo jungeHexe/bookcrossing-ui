@@ -44,8 +44,7 @@ export class ErrorHandlerService {
   public handleErrorAndNull(error: HttpErrorResponse, prefix: string, id?: string): Observable<any> {
     const message = this.prepareMessage(error, prefix, id);
     this.alertService.showNotification('error', message);
-    console.error(message, error);
-    return of(null);
+    return of(error);
   }
 
   private prepareMessage(error: HttpErrorResponse, prefix: string, id?: string): string {
