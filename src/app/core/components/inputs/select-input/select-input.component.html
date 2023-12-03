@@ -1,14 +1,10 @@
 <div class="selector">
   <label [for]="label">{{ label }} {{ isRequired() ? '*' : '' }}</label><br>
-  <input type="search" [id]="label"
+  <ng-select
+    [items]="options"
+    bindLabel="name"
     [placeholder]="placeholder"
-    [formControl]="control"
-    (click)="showOptions = !showOptions"
-    (blur)="blur()"
-  />
-  <ul *ngIf="showOptions">
-     <li *ngFor="let option of options;" (click)="select(option)">
-       {{ option.name }}
-     </li>
-  </ul>
+    [multiple]="multi"
+    [formControl]="control">
+  </ng-select>
 </div>

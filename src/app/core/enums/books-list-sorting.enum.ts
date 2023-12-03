@@ -11,8 +11,8 @@ export class BooksListSorting extends BaseEnum {
   public static BooksListSortingDictionary = new Map<BooksListSortingEnum, BaseEnumData>([
     [BooksListSortingEnum.RatingAsc, { name: 'По возрастанию рейтинга' }],
     [BooksListSortingEnum.RatingDesc, { name: 'По убыванию рейтинга' }],
-    [BooksListSortingEnum.TitleAsc, { name: 'По возрастанию названия' }],
-    [BooksListSortingEnum.TitleDesc, { name: 'По убыванию названия' }],
+    [BooksListSortingEnum.TitleAsc, { name: 'По названию А-Я' }],
+    [BooksListSortingEnum.TitleDesc, { name: 'По названия Я-А' }],
     ]);
 
   /**
@@ -23,7 +23,7 @@ export class BooksListSorting extends BaseEnum {
    * Наименование перечисления.
    */
   name: string;
-  
+
   constructor(countryFilterEnum: BooksListSortingEnum) {
     super();
     if (!countryFilterEnum) {

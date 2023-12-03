@@ -60,7 +60,7 @@
     </div>
     <div class="w-70-p">
       <div class="flex-row justify-content-between read-card-title">
-         {{entityStoreService.entity.title}}
+        <span>{{entityStoreService.entity.title}}</span>
          <app-button class="my-auto" [label]="'Отредактировать книгу'" (click)="onEditClick()"></app-button>
       </div>
       <h3 class="read-card-subtitle w-100-p">
@@ -72,7 +72,7 @@
       </h3>
       <app-tabs>
         <app-tab tabTitle="О книге">
-          <section class="read-card-description">{{entityStoreService.entity.description}}</section>
+          <section class="read-card-description mb-md">{{entityStoreService.entity.description}}</section>
           <span><span class="genre" *ngFor="let genre of entityStoreService.entity.genres">{{ genre }}</span></span>
         </app-tab>
         <app-tab tabTitle="Впечатления">

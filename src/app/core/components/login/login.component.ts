@@ -33,7 +33,14 @@ export class LoginComponent implements OnInit, AfterViewInit {
     readonly loginFormStoreService: LoginFormStoreService,
     private readonly authentificationService: AuthentificationService,
     private readonly alertService: AlertService,
-  ) { }
+  ) {
+    if (UserStoreService.isAuthorized()) {
+      this.router.navigate([
+        AppPathConstants.PROFILE,
+        UserStoreService.user.guid,
+      ]).then();
+    }
+  }
 
   ngOnInit(): void {
     const controls = {

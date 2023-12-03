@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
-
+@import "~@ng-select/ng-select/themes/default.theme.css";
 @import 'node_modules/angular-notifier/styles';
 @import 'assets/styles/colors';
 @import 'assets/styles/paginator';
@@ -251,5 +251,43 @@ footer {
 .hover-border-none {
   &:hover {
     border: none;
+  }
+}
+
+.ng-select .ng-select-container {
+  width: 100%;
+  position: relative;
+  border: 1px solid $coffee !important;
+  border-radius: 5px !important;
+  height: 35px;
+  color: rgba(227, 212, 198, 0.41) !important;
+  font-size: 16px;
+  display: block;
+  background-color: transparent !important;
+
+  input {
+    color: inherit;
+  }
+
+  .ng-value {
+    background-color: inherit !important;
+    color: inherit !important;
+    border: none !important;
+
+    .left {
+      border-right: none !important;
+    }
+  }
+}
+
+.ng-dropdown-panel {
+  background-color: $coffee;
+
+  .ng-dropdown-panel-items .ng-option {
+    background-color: transparent;
+  }
+
+  .ng-option-selected, .ng-option-selected.ng-option-marked {
+    background-color: inherit !important;
   }
 }

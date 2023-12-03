@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
-import { UserStoreService } from "./core/stores/user-store.service";
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {UserStoreService} from "./core/stores/user-store.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
 
-  get isAuthorized() {
-    return UserStoreService.isAuthorized();
+  notLanding(): boolean {
+    return UserStoreService.isAuthorized() && location.pathname !== '/';
   }
 }

@@ -1,7 +1,7 @@
 import {BaseListFilter} from "../../core/domain/base-list-filter.model";
 import {ObjectUtils} from "../../core/utils/object-utils";
 import { Genre } from "src/app/core/domain/genre.model";
-import {BooksListSorting, BooksListSortingEnum } from "src/app/core/enums/books-list-sorting.enum";
+import {BooksListSorting } from "src/app/core/enums/books-list-sorting.enum";
 
 export class BooksListFilterControlNames {
   static readonly AUTHOR_NAME: keyof BooksListFilter = 'authorName';
@@ -18,7 +18,7 @@ export class BooksListFilter extends BaseListFilter {
   bookTitle: string = null;
   genres: Genre[] = [];
   orderBy: BooksListSorting = null;
-  
+
   constructor(filter: Partial<BooksListFilter> = null) {
     super();
     if (!filter) {
@@ -28,7 +28,7 @@ export class BooksListFilter extends BaseListFilter {
     this.genres = filter.genres?.map(o => Genre.toClientObject(o)) ?? [];
     this.orderBy = BooksListSorting.toClientObject(filter.orderBy?.guid ?? filter.orderBy);
   }
-  
+
   toServerObject(): Partial<any> {
     const filter = {
       book_title: this.bookTitle,

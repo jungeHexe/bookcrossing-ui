@@ -1,9 +1,9 @@
-<div class="card" (click)="onClick.emit(book.guid)">
+<div class="card" (click)="onClick.emit(book.guid)" (dblclick)="onDblclick.emit(book.guid)">
   <img class="cover" [src]="book.picFileName"/>
   <div class="main-block">
     <label>{{ book.cardTitle }}</label>
     <section>{{ book.cardDescription }}</section>
-    <div class="flex justify-content-between">
+    <div class="flex justify-content-between mt-md">
       <span><span class="genre" *ngFor="let genre of book.genres">{{ genre }}</span></span>
       <span class="flex">
         <span class="card-icon"><img src="/assets/images/book_icon.png"/>{{ book.quantityRequests ?? 0 }}</span>

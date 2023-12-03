@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Book} from "../../domain/book.model";
 
 @Component({
@@ -10,5 +10,6 @@ export class BookListCardComponent {
 
   @Input() book: Book = null;
   @Output() onClick = new EventEmitter<string>();
+  @Output() onDblclick = new EventEmitter<string>();
 
 }

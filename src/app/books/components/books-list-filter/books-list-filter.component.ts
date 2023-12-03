@@ -15,7 +15,7 @@ import {BooksListFilterStoreService} from "../../store/books-list-filter-store.s
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BooksListFilterComponent extends BaseListFilterComponent implements OnInit, AfterViewInit {
-  
+
   @Input() repository: BaseListRepository;
   @Output() onSearchClick = new EventEmitter();
 

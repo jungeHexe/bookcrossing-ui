@@ -24,8 +24,6 @@ export class SelectInputComponent implements OnInit {
   @Input() withServerSearch = true;
 
   options: SelectOption[];
-  showOptions = false;
-  searchInput: string = null;
 
   constructor(
     private selectorService: SelectorService,
@@ -42,17 +40,6 @@ export class SelectInputComponent implements OnInit {
       .subscribe(value => {
         this.options = value;
       });
-
-    this.searchInput = this.control.value;
-  }
-
-  select(value: SelectOption): void {
-    this.searchInput = value.name;
-    this.control.setValue(this.multi? [value] : value);
-  }
-
-  blur(): void {
-    setTimeout(() => this.showOptions = false, 0);
   }
 
   defaultParams(): HttpParams {
