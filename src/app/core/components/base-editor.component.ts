@@ -114,6 +114,7 @@ export class BaseEditorComponent<T extends BaseDomain> implements OnDestroy {
   ngOnDestroy(): void {
     if (this.isReadOnlyMode$.value) {
       this.entityStoreService.entity = null;
+      this.entityStoreService.loadedEntity = null;
     }
   }
 

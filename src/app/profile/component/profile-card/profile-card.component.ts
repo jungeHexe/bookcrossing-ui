@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {BaseEditorComponent} from "../../../core/components/base-editor.component";
 import {User, UserControlNames} from "../../../core/domain/user.model";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -20,6 +20,7 @@ import {OperationStatusEnum} from "../../../core/enums/operation-status.enum";
   selector: 'app-profile-card',
   templateUrl: './profile-card.component.html',
   styleUrls: ['./profile-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileCardComponent extends BaseEditorComponent<User> implements OnInit, AfterViewInit {
 

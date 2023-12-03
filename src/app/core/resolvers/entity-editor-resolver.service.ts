@@ -34,6 +34,7 @@ export class EntityEditorResolver<T extends BaseDomain> implements Resolve<T> {
               return EMPTY;
             }),
             tap((entity: T) => {
+              console.log(entity)
               entityStoreService.loadedEntity = entity;
               entityStoreService.resetActiveTab();
             }),

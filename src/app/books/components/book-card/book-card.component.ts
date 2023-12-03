@@ -32,6 +32,7 @@ export class BookCardComponent extends BaseEditorComponent<Book> implements OnIn
   ) {
     super(router, route, navigationService, bookService, bookStoreService);
 
+    console.log(this.entityStoreService.loadedEntity)
     if (!this.entityStoreService.loadedEntity) {
       this.entityStoreService.loadedEntity = new Book(this.entityStoreService.entity ?? {
         localObject: true,

@@ -11,6 +11,7 @@ import { SelectInputComponent } from './components/inputs/select-input/select-in
 import { TabsComponent } from './components/tabs/tabs.component';
 import { TabComponent } from './components/tabs/tab/tab.component';
 import { LoginComponent } from './components/login/login.component';
+import {NgSelectModule} from "@ng-select/ng-select";
 
 const components = [
   TextInputComponent,
@@ -41,9 +42,10 @@ const pipes = [];
     CommonModule,
     FormsModule,
     NgxPaginationModule,
+    NgSelectModule,
     ReactiveFormsModule,
     RouterModule,
-    
+
     ...components,
 //    ...directives,
 //    ...pipes,
@@ -51,6 +53,7 @@ const pipes = [];
   imports: [
     CommonModule,
     NgxPaginationModule,
+    NgSelectModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
