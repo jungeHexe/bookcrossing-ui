@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       [this.CONTROL_NAMES.PASSWORD]: new CustomFormControl(null, [
         Validators.required,
       ]),
-      [this.CONTROL_NAMES.REPEATED_PASSWORD]: new CustomFormControl(),
+      [this.CONTROL_NAMES.NEW_PASSWORD]: new CustomFormControl(),
     };
     FormUtils.addControls(this.formGroup, controls);
   }
@@ -102,7 +102,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   checkPasswordFields(): boolean {
-    return this.loginFormStoreService.registrationForm.password === this.loginFormStoreService.registrationForm.repeatedPassword;
+    return this.loginFormStoreService.registrationForm.password === this.loginFormStoreService.registrationForm.newPassword;
   }
 
   getControl(controlName: string): CustomFormControl {

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import {EntityService} from "../../core/services/entity.service";
-import {User} from "../../core/domain/user.model";
+import {ChangePasswordParams, User} from "../../core/domain/user.model";
 import {catchError, map, Observable} from "rxjs";
 import {OperationResult} from "../../core/domain/operation-result.model";
 import {SearchResult} from "../../core/interfaces/search-result";
@@ -19,7 +19,18 @@ export class ProfileService extends EntityService<User> {
     super();
   }
 
-  changePassword(): void {}
+  changePassword(params: ChangePasswordParams): Observable<OperationResult> {
+    return this.http.put(`${SERVER_URL}users/change-password`, params)
+      .pipe(
+        catchError((err) => this.errorHandler.handleErrorAndNull(err, 'Ошибка при смене пароля')),
+        map((response: any) => {
+          if (response?.error) {
+            return OperationResult.toClientObject({status: OperationStatusEnum.Failed});
+          }
+          return OperationResult.toClientObject({status: OperationStatusEnum.Ok});
+        }),
+      );
+  }
 
   update(entity: User): Observable<OperationResult> {
     return this.http.put(`${SERVER_URL}users/update`, entity.toServerObject())
@@ -29,8 +40,17 @@ export class ProfileService extends EntityService<User> {
       );
   }
 
-  delete(entities: any[]): Observable<OperationResult> {
-    return undefined;
+  delete(entity: any): Observable<OperationResult> {
+    return this.http.delete(`${SERVER_URL}users/${entity.guid}`)
+      .pipe(
+        catchError((err) => this.errorHandler.handleErrorAndNull(err, 'Ошибка при удалении профиля')),
+        map((response: any) => {
+          if (response?.error) {
+            return OperationResult.toClientObject({status: OperationStatusEnum.Failed});
+          }
+          return OperationResult.toClientObject({status: OperationStatusEnum.Ok});
+        }),
+      );
   }
 
   create(entity: User): Observable<OperationResult> {

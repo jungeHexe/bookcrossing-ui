@@ -247,3 +247,9 @@ footer {
   width: 100%;
   margin: 25px 0;
 }
+
+.hover-border-none {
+  &:hover {
+    border: none;
+  }
+}

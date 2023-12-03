@@ -14,6 +14,7 @@ import {Validators} from "@angular/forms";
 import {UserStoreService} from "../../../core/stores/user-store.service";
 import {AppPathConstants} from "../../../app.constants";
 import {AuthentificationService} from "../../../core/services/authentification.service";
+import {OperationStatusEnum} from "../../../core/enums/operation-status.enum";
 
 @Component({
   selector: 'app-profile-card',
@@ -58,7 +59,7 @@ export class ProfileCardComponent extends BaseEditorComponent<User> implements O
         Validators.required,
       ]),
       [this.CONTROL_NAMES.EMAIL]: new CustomFormControl(entity.email),
-      [this.CONTROL_NAMES.REPEATED_PASSWORD]: new CustomFormControl(entity.repeatedPassword),
+      [this.CONTROL_NAMES.NEW_PASSWORD]: new CustomFormControl(entity.newPassword),
       [this.CONTROL_NAMES.PASSWORD]: new CustomFormControl(entity.password),
     };
     this.addControls(controls);
@@ -86,6 +87,30 @@ export class ProfileCardComponent extends BaseEditorComponent<User> implements O
   logout(): void {
     this.authService.logout();
     this.router.navigate([AppPathConstants.LOGIN]).then();
+  }
+
+  deleteProfile(): void {
+    this.profileService.delete(this.entityStoreService.entity)
+      .pipe(untilDestroyed(this))
+      .subscribe(value => {
+        if (value.status?.guid === OperationStatusEnum.Ok) {
+          this.logout();
+        }
+      });
+  }
+
+  changePassword(): void {
+    this.profileService.changePassword({
+      guid: this.entityStoreService.entity.guid,
+      oldPassword: this.entityStoreService.entity.password,
+      newPassword: this.entityStoreService.entity.newPassword,
+    })
+      .pipe(untilDestroyed(this))
+      .subscribe(value => {
+        if (value.status?.guid === OperationStatusEnum.Ok) {
+          this.logout();
+        }
+      });
   }
 
   protected beforeSaveActions(createNext: boolean = false) {
