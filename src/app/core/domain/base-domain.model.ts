@@ -16,6 +16,8 @@ export abstract class BaseDomain {
    */
   createdAt: Date = null;
 
+  updatedAt: Date = null;
+
   /**
    * Конвертировать данные, полученные с сервера, в клиентский объект доменной модели.
    * @param _serverObject данные, полученные с сервера.
@@ -43,7 +45,7 @@ export abstract class BaseDomain {
       id: clientObject.guid,
     };
   }
-  
+
   toString(): string {
     return this.name;
   }

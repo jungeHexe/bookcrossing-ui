@@ -1,0 +1,103 @@
+<div class="container flex" *ngIf="!isReadOnlyMode$.value; else readMode">
+  <div class="w-30-p">
+    <div class="upload-img" *ngIf="!getControl(CONTROL_NAMES.IMAGE).value; else image">
+      <input type="file" id='upload' (change)="this.onFileSelected($event)"/>
+      <label for="upload" class="button">Выбрать фото</label>
+    </div>
+  </div>
+  <div class="w-70-p my-auto">
+    <h3 class="card-title">{{ this.cardTitle }}</h3>
+    <div class="card-row">
+      <app-text-input
+        class="w-70-p"
+        [label]="'Название публикации'"
+        [placeholder]="'Введите название публикации'"
+        [control]="getControl(CONTROL_NAMES.TITLE)"
+      ></app-text-input>
+      <app-select-input
+        class="w-30-p"
+        [label]="'Тип публикации'"
+        [placeholder]="'Выберите тип публикации'"
+        [selectorType]="'post_type'"
+        [control]="getControl(CONTROL_NAMES.TYPE)"
+      ></app-select-input>
+    </div>
+    <div class="card-row" *ngIf="isReview()">
+      <app-select-input
+        class="w-70-p"
+        [label]="'Книга'"
+        [placeholder]="'Выберите книгу'"
+        [selectorType]="'book'"
+        [control]="getControl(CONTROL_NAMES.BOOK)"
+      ></app-select-input>
+      <app-text-input
+        class="w-30-p"
+        [label]="'Оценка книги'"
+        [placeholder]="'Введите число от 1 до 5'"
+        [control]="getControl(CONTROL_NAMES.BOOK_RATING)"
+      ></app-text-input>
+    </div>
+    <div class="card-row">
+      <app-text-input
+        class="w-100-p"
+        [label]="'Содержание публикации'"
+        [nativeElement]="'textarea'"
+        [placeholder]="'Введите содержание публикации'"
+        [control]="getControl(CONTROL_NAMES.CONTENT)"
+      ></app-text-input>
+    </div>
+    <div class="card-row justify-content-end">
+      <app-button
+        class="mt-md"
+        [label]="'Сохранить'"
+        [disabled]="saveDisabled()"
+        (click)="save()"
+      ></app-button>
+    </div>
+  </div>
+</div>
+
+<ng-template #readMode>
+  <div class="container flex">
+    <div class="w-30-p">
+      <ng-container *ngTemplateOutlet="image"></ng-container>
+    </div>
+    <div class="w-70-p">
+      <span class="mt-md flex w-100-p">
+        <img class="round-btn" [src]="entityStoreService.entity.user?.avatar"/>
+        <span class="my-auto">{{ entityStoreService.entity.user?.name }}</span>
+      </span>
+      <div class="flex-row justify-content-between read-card-title">
+        <span>{{entityStoreService.entity.title}}</span>
+        <div class="flex">
+          <app-button *ngIf="isCanEdit()" class="my-auto mr-md" [label]="'Отредактировать'" (click)="onEditClick()"></app-button>
+        </div>
+      </div>
+      <h3 *ngIf="isReview()" class="read-card-subtitle w-100-p">
+        {{entityStoreService.entity.book?.cardTitle}}
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="27" viewBox="0 0 26 27" fill="none">
+          <path d="M13 1.49986L15.3697 9.44788C15.6225 10.2955 16.4019 10.8764 17.2864 10.8764H24.9895L18.7005 15.5726C18.0187 16.0817 17.7337 16.9666 17.9902 17.778L20.3812 25.3411L14.1966 20.7229C13.4869 20.193 12.5131 20.1929 11.8034 20.7229L5.61884 25.3411L8.00981 17.778C8.26631 16.9666 7.98131 16.0817 7.29948 15.5726L1.01051 10.8764L8.71363 10.8764C9.5981 10.8764 10.3775 10.2955 10.6303 9.44786L13 1.49986Z" fill="#E3D4C6" stroke="#E3D4C6" stroke-width="2"/>
+        </svg>
+        <span>{{entityStoreService.entity.bookRating}}</span>
+      </h3>
+
+      <app-tabs>
+        <app-tab tabTitle="Содержание">
+          <section class="read-card-description mb-md">{{entityStoreService.entity.content}}</section>
+          <span class="genre">{{ entityStoreService.entity.type?.name }}</span>
+        </app-tab>
+        <app-tab tabTitle="Обсуждение">
+          Пока нет данных (
+        </app-tab>
+      </app-tabs>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #image>
+  <img class="img_block" [src]="getControl(CONTROL_NAMES.IMAGE).value"/>
+  <span class="flex w-80-p mt-md" *ngIf="!isReadOnlyMode$.value">
+    <app-button class="mx-auto" [label]="'Удалить обложку'" (click)="clearCover()"></app-button>
+  </span>
+</ng-template>

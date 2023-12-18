@@ -21,7 +21,8 @@ export class PointsListComponent {
 
   constructor(
     readonly pointsStoreService: PointsStoreService,
-  ) { }
+  ) {
+  }
 
   activatePoint(id: number): void {
     this.selectedItem = id;

@@ -15,13 +15,12 @@ export interface LoginParams {
 @Injectable({providedIn: 'root'})
 export class AuthentificationService {
   private readonly token$ = new BehaviorSubject<string>(null);
-  
+
   constructor(
     private readonly http: HttpClient,
     private readonly errorHandler: ErrorHandlerService,
-    private readonly localStorageService: LocalStorageService,
   ) {
-    const savedToken = this.localStorageService.getItem('user-token');
+    const savedToken = sessionStorage.getItem('user-token');
     if (savedToken) {
       this.token$.next(savedToken);
     }
@@ -29,12 +28,12 @@ export class AuthentificationService {
   get token() {
     return this.token$.value;
   }
-  
+
   set token(token: string) {
-    this.localStorageService.setItem('user-token', token);
+    sessionStorage.setItem('user-token', token);
     this.token$.next(token);
   }
-  
+
   login(params: LoginParams): Observable<User> {
     return this.http.post(`${SERVER_URL}users/auth`, params)
       .pipe(
@@ -45,7 +44,7 @@ export class AuthentificationService {
         }),
       );
   }
-  
+
   register(entity: User): Observable<User> {
     return this.http.post(`${SERVER_URL}users/register`, entity.toServerObject())
       .pipe(
@@ -55,7 +54,7 @@ export class AuthentificationService {
         }),
       );
   }
-  
+
   logout(): void {
     UserStoreService.setUser(null);
     this.token = null;
