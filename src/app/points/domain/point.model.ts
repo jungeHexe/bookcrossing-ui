@@ -5,10 +5,10 @@ export class Point extends BaseDomain {
   title: string = null;
   latitude: number = null;
   longitude: number = null;
-  address: string = null;
+  addressText: string = null;
 
   get ballon(): string {
-    return `<b>${this.title}</b><br/>${this.address}`
+    return `<b>${this.title}</b><br/>${this.addressText}`
   }
   constructor(entity: Partial<Point> = null) {
     super();
@@ -22,7 +22,7 @@ export class Point extends BaseDomain {
     if (!serverObject) {
       return null;
     }
-    return new Point(serverObject);
+    return new Point(ObjectUtils.objectToCamelCase(serverObject));
   }
 
   toServerObject(): any {
@@ -30,7 +30,7 @@ export class Point extends BaseDomain {
       title: this.title,
       longitude: this.longitude,
       latitude: this.latitude,
-      address: this.address,
+      addressText: this.addressText,
     };
   }
 

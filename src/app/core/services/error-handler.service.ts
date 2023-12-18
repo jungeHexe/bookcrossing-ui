@@ -37,7 +37,6 @@ export class ErrorHandlerService {
 
   public handleError(error: HttpErrorResponse, prefix: string, id?: string): Observable<never> {
     const message = this.prepareMessage(error, prefix, id);
-    console.error(message, error);
     return throwError(message);
   }
 
@@ -56,7 +55,7 @@ export class ErrorHandlerService {
       return ErrorHandlerService.formatMessage(prefix, error.error.message, id);
     }
 
-    if (error.status === 401) {
+    if (error.status === 403) {
       return ErrorHandlerService.formatMessage(prefix, error.error.detail ?? this.MESSAGES.get(this.NOT_AUTHORIZED), id);
     }
 

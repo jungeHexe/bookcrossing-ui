@@ -28,9 +28,6 @@ const routes: Routes = [
       },
       currentAction: ObjectFormState.EDIT,
     },
-    resolve: {
-      profile: ProfileResolver,
-    }
   },
 ];
 

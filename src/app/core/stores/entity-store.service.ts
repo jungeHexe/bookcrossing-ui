@@ -20,7 +20,7 @@ export class EntityStoreService<T extends BaseDomain> {
   /**
    * Необходимость сохранения сущности из вложенного редактора.
    */
-  public readonly directSave$ = new BehaviorSubject(false);
+  public readonly directSave$ = new BehaviorSubject(true);
   /**
    * Наименование стрелочки назад для вложенного редактора.
    */

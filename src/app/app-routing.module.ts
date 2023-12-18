@@ -35,6 +35,12 @@ const routes: Routes = [
         loadChildren: () => import('./points/points.module')
               .then(m => m.PointsModule),
       },
+      {
+        path: AppPathConstants.POSTS,
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./posts/posts.module')
+          .then(m => m.PostsModule),
+      },
     ]
   },
 ];

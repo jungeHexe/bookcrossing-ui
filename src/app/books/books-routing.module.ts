@@ -23,6 +23,9 @@ const routes: Routes = [
       },
       currentAction: ObjectFormState.CREATE,
     },
+    resolve: {
+      book: BookEditorResolver,
+    }
   },
   {
     path: `${AppPathConstants.EDIT}/${AppPathConstants.ID_PARAM}`,

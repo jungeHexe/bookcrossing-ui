@@ -43,7 +43,7 @@ export class SelectInputComponent implements OnInit {
   }
 
   defaultParams(): HttpParams {
-    return new HttpParams().appendAll({page: 1, size: 50});
+    return new HttpParams().appendAll({page: 1, size: 100});
   }
 
   // todo поиск с фильтром по строке

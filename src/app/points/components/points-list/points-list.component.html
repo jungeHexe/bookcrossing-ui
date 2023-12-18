@@ -7,7 +7,7 @@
       <ol *ngFor="let point of pointsStoreService.points; let i = index">
         <li [ngClass]="(selectedItem == i)? 'active': ''" (click)="activatePoint(i)" [id]="i">
           <div class="f-20">{{point.title}}</div>
-          <div *ngIf="selectedItem === i" class="address-block">{{ point.address}}</div>
+          <div *ngIf="selectedItem === i" class="address-block">{{ point.addressText}}</div>
         </li>
       </ol>
     </div>

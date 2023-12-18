@@ -69,6 +69,7 @@ export class BaseEditorComponent<T extends BaseDomain> implements OnDestroy {
    * Событие закрытия текущего вложенного редактора
    */
   readonly closeEditor = new EventEmitter<void>();
+  readonly openEditor$ = new BehaviorSubject(false);
   /**
    * Заголовок карточки
    */
@@ -112,9 +113,8 @@ export class BaseEditorComponent<T extends BaseDomain> implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.isReadOnlyMode$.value) {
+    if (!this.openEditor$.value) {
       this.entityStoreService.entity = null;
-      this.entityStoreService.loadedEntity = null;
     }
   }
 
@@ -244,11 +244,12 @@ export class BaseEditorComponent<T extends BaseDomain> implements OnDestroy {
   }
 
   onEditClick(): void {
+    this.openEditor$.next(true);
     this.router.navigate([
       this.listUrl,
       AppPathConstants.EDIT,
       this.entityStoreService.entity.guid,
-      ]).then();
+      ]).then(res => setTimeout(() => this.openEditor$.next(false), 0));
   }
 
   /**

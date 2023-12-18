@@ -35,8 +35,11 @@ ol {
 
 .points-list {
   width: 35%;
+  max-width: 35%;
   height: 70vh;
-  overflow: visible;
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .f-20 {

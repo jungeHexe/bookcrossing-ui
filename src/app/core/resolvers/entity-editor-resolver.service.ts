@@ -41,11 +41,8 @@ export class EntityEditorResolver<T extends BaseDomain> implements Resolve<T> {
       }
     } else {
       // Если в редакторе ещё не работали - сбрасываем активную вкладку/шаг степпера
-      if (entityStoreService.entity == null || entityStoreService.loadedEntity?.guid !== entityStoreService.entity.guid) {
-        entityStoreService.resetActiveTab();
-      } else {
-        entityStoreService.loadedEntity = null;
-      }
+      entityStoreService.resetActiveTab();
+      entityStoreService.loadedEntity = null;
     }
     return entityStoreService.loadedEntity;
   }

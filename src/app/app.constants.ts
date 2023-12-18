@@ -12,6 +12,7 @@ export class AppPathConstants {
   static readonly PROFILE = 'profile';
   static readonly LANDING = 'landing';
   static readonly BOOKCROSSING_POINTS = 'points';
+  static readonly POSTS = 'posts';
 }
 
 export class ObjectFormState {

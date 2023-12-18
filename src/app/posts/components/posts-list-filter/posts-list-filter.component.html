@@ -1,0 +1,17 @@
+<div class="list-filter p-relative">
+  <app-select-input
+    class="w-50-p"
+    [label]="'Книга'"
+    [placeholder]="'Выберите книгу'"
+    [selectorType]="'book'"
+    [control]="getControl(controlNames.BOOK)"
+  ></app-select-input>
+  <app-select-input
+    class="w-50-p"
+    [label]="'Тип публикации'"
+    [placeholder]="'Выберите тип публикации'"
+    [selectorType]="'post_type'"
+    [control]="getControl(controlNames.TYPE)"
+  ></app-select-input>
+  <app-button [label]="'Искать'" (click)="onSearchClick.emit()"></app-button>
+</div>

@@ -9,7 +9,7 @@ export class UserStoreService {
    * Текущий пользователь.
    */
   static get user(): User {
-    return this.user$.value ?? User.toClientObject(JSON.parse(localStorage.getItem('user')));
+    return this.user$.value ?? User.toClientObject(JSON.parse(sessionStorage.getItem('user')));
   }
 
   /**
@@ -17,7 +17,7 @@ export class UserStoreService {
    * @param user Текущий пользователь.
    */
   static setUser(user: User): void {
-    user ? localStorage.setItem('user', JSON.stringify(user)) : localStorage.removeItem('user');
+    user ?sessionStorage.setItem('user', JSON.stringify(user)) : sessionStorage.removeItem('user');
     this.user$.next(user);
   }
 

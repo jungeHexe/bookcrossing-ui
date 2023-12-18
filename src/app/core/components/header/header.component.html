@@ -8,7 +8,7 @@
         <a routerLink="/posts" routerLinkActive="active-link">Публикации</a>
     </nav>
     <a  class="hover-border-none" routerLinkActive="profile-active-link" [routerLink]="['profile', UserStoreService.user?.guid]" >
-      <img class="profile-btn" [src]="getUserAvatar()"/>
+      <img class="round-btn" [src]="getUserAvatar()"/>
     </a>
   </div>
 </header>

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CustomFormControl} from 'src/app/core/components/custom-form.control';
 import {NavigationService} from 'src/app/core/services/navigation.service';
@@ -18,6 +18,7 @@ import {AppPathConstants} from "../../../app.constants";
   selector: 'app-book-card',
   templateUrl: './book-card.component.html',
   styleUrls: ['./book-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BookCardComponent extends BaseEditorComponent<Book> implements OnInit, AfterViewInit {
 
@@ -88,4 +89,6 @@ export class BookCardComponent extends BaseEditorComponent<Book> implements OnIn
   clearCover(): void {
     this.getControl(this.CONTROL_NAMES.PIC_FILE_NAME).setValue(null);
   }
+
+
 }

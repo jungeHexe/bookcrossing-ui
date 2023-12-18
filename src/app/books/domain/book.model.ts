@@ -32,15 +32,15 @@ export class Book extends BaseDomain {
   get quantityReviews(): number {
     return this.reviews?.length;
   }
-  
+
   get cardTitle(): string {
-    return `${this.authors?.map(o => o.toString()).join(', ')} «‎${this.title}»`;
+    return `${this.authors?.map(o => o.toString()).join(', ')} "${this.title}"`;
   }
-  
+
   get cardDescription(): string {
     return this.description.length > 450 ? this.description.slice(0, 450) + '...' : this.description;
   }
-  
+
   get fullAuthorsNames(): string {
     return this.authors?.map(o => `${o.surname} ${o.name} ${o.patronymic}`).join(', ');
   }
@@ -53,16 +53,15 @@ export class Book extends BaseDomain {
     ObjectUtils.constructorFiller(this, entity);
     this.genres = entity.genres?.map(o => Genre.toClientObject(o));
     this.authors = entity.authors?.map(o => Author.toClientObject(o));
-    this.rating = 4.6;
   }
-  
+
   static toClientObject(serverObject: any): Book {
     if (!serverObject) {
       return null;
     }
     return new Book(ObjectUtils.objectToCamelCase(serverObject));
   }
-  
+
   toServerObject(): any {
     return {
       guid: this.guid,
@@ -74,4 +73,5 @@ export class Book extends BaseDomain {
       authors: this.authors?.map(o => o.guid),
     };
   }
+
 }

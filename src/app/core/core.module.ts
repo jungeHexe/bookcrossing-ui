@@ -12,6 +12,7 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { TabComponent } from './components/tabs/tab/tab.component';
 import { LoginComponent } from './components/login/login.component';
 import {NgSelectModule} from "@ng-select/ng-select";
+import { PostsListComponent } from './components/lists/posts-list/posts-list.component';
 
 const components = [
   TextInputComponent,
@@ -34,19 +35,21 @@ const pipes = [];
     HeaderComponent,
     FooterComponent,
     LoginComponent,
+    PostsListComponent,
     // ...directives,
     //...pipes,
     ],
-  exports: [
-    // Angular modules
-    CommonModule,
-    FormsModule,
-    NgxPaginationModule,
-    NgSelectModule,
-    ReactiveFormsModule,
-    RouterModule,
+    exports: [
+        // Angular modules
+        CommonModule,
+        FormsModule,
+        NgxPaginationModule,
+        NgSelectModule,
+        ReactiveFormsModule,
+        RouterModule,
 
-    ...components,
+        ...components,
+        PostsListComponent,
 //    ...directives,
 //    ...pipes,
     ],
