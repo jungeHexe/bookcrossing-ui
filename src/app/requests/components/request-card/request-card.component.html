@@ -1,0 +1,42 @@
+<div class="container h-100-p flex-column m-auto justify-content-center w-70-p">
+  <h3 class="card-title">{{ this.cardTitle }}</h3>
+    <div class="card-row">
+      <app-select-input
+        class="w-100-p"
+        [label]="'Книга'"
+        [placeholder]="'Выберите книгу'"
+        [selectorType]="'book'"
+        [control]="getControl(CONTROL_NAMES.BOOK)"
+      ></app-select-input>
+    </div>
+    <div class="card-row">
+      <app-select-input
+        class="w-100-p"
+        [label]="'Точка буккроссинга'"
+        [placeholder]="'Выберите точку, где оставили книгу'"
+        [selectorType]="'point'"
+        [control]="getControl(CONTROL_NAMES.POINT)"
+      ></app-select-input>
+    </div>
+    <div class="card-row justify-content-end">
+      <app-button
+        *ngIf="!isReadOnlyMode$.value"
+        class="mt-md"
+        [label]="'Сохранить'"
+        [disabled]="saveDisabled()"
+        (click)="save()"
+      ></app-button>
+      <app-button
+        *ngIf="isCanEdit() && isReadOnlyMode$.value"
+        class="mt-md"
+        [label]="'Редактировать'"
+        (click)="onEditClick()"
+      ></app-button>
+      <app-button
+        *ngIf="isReadOnlyMode$.value"
+        class="mt-md"
+        [label]="'Забрать книгу'"
+        (click)="setArchiveStatus()"
+      ></app-button>
+    </div>
+</div>

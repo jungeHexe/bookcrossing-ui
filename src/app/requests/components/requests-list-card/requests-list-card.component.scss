@@ -1,0 +1,10 @@
+@import 'src/assets/styles/card';
+
+.card {
+  height: 250px;
+
+  .main-block {
+    width: 100%;
+    max-width: 100%;
+  }
+}

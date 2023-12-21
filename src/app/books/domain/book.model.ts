@@ -53,6 +53,7 @@ export class Book extends BaseDomain {
     ObjectUtils.constructorFiller(this, entity);
     this.genres = entity.genres?.map(o => Genre.toClientObject(o));
     this.authors = entity.authors?.map(o => Author.toClientObject(o));
+    this.name = this.cardTitle;
   }
 
   static toClientObject(serverObject: any): Book {
@@ -74,4 +75,7 @@ export class Book extends BaseDomain {
     };
   }
 
+  toString(): string {
+    return this.cardTitle;
+  }
 }

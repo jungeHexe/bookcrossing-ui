@@ -1,9 +1,16 @@
 <div class="container">
+  <div class="flex justify-content-between">
+    <fieldset class="list-title"><legend>Книги ищут дом</legend></fieldset>
+    <app-button class="my-auto" [type]="'second'" [label]="'Добавить'" (click)="onCreateClick()"></app-button>
+  </div>
+
   <div class="list">
-    <div class="internal-card-border" *ngFor="let post of this.data$ | async |
+    <app-requests-list-card *ngFor="let request of this.data$ | async |
         paginate: { id: 'server', itemsPerPage: this.repository.paginationData?.perPage,
         currentPage: this.repository.paginationData?.page, totalItems: this.repository.paginationData?.total }"
-    >{{post.title}}</div>
+                         [request]="request"
+                         (onDblclick)="onReadClick($event)"
+    ></app-requests-list-card>
   </div>
 
   <div class="flex justify-content-end">

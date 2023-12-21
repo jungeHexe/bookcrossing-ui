@@ -13,6 +13,7 @@ import { TabComponent } from './components/tabs/tab/tab.component';
 import { LoginComponent } from './components/login/login.component';
 import {NgSelectModule} from "@ng-select/ng-select";
 import { PostsListComponent } from './components/lists/posts-list/posts-list.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 const components = [
   TextInputComponent,
@@ -36,6 +37,7 @@ const pipes = [];
     FooterComponent,
     LoginComponent,
     PostsListComponent,
+    SpinnerComponent,
     // ...directives,
     //...pipes,
     ],
@@ -50,6 +52,7 @@ const pipes = [];
 
         ...components,
         PostsListComponent,
+        SpinnerComponent,
 //    ...directives,
 //    ...pipes,
     ],

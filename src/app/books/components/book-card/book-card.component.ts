@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CustomFormControl} from 'src/app/core/components/custom-form.control';
 import {NavigationService} from 'src/app/core/services/navigation.service';
@@ -13,6 +13,8 @@ import {untilDestroyed} from "@ngneat/until-destroy";
 import {distinctUntilChanged} from "rxjs";
 import {FileUtils} from "../../../core/utils/file-utils";
 import {AppPathConstants} from "../../../app.constants";
+import {RequestStoreService} from "../../../requests/stores/request-store.service";
+import {Request} from "../../../requests/domain/request.model";
 
 @Component({
   selector: 'app-book-card',
@@ -30,6 +32,8 @@ export class BookCardComponent extends BaseEditorComponent<Book> implements OnIn
     navigationService: NavigationService,
     readonly bookService: BooksService,
     readonly bookStoreService: BookStoreService,
+    private readonly requestStoreService: RequestStoreService,
+    private readonly changeDetectionRef: ChangeDetectorRef,
   ) {
     super(router, route, navigationService, bookService, bookStoreService);
 
@@ -43,6 +47,7 @@ export class BookCardComponent extends BaseEditorComponent<Book> implements OnIn
       this.entityStoreService.entity = new Book(this.entityStoreService.loadedEntity);
     }
 
+    this.entityStoreService.activeTab = 'О книге';
     this.listUrl = AppPathConstants.BOOKS;
   }
 
@@ -83,6 +88,7 @@ export class BookCardComponent extends BaseEditorComponent<Book> implements OnIn
     const file: File = event.target.files[0];
     FileUtils.convertFile(file).subscribe(base64 => {
       this.getControl(this.CONTROL_NAMES.PIC_FILE_NAME).setValue('data:image/png;base64,'+ base64);
+      this.changeDetectionRef.detectChanges();
     });
   }
 
@@ -91,4 +97,10 @@ export class BookCardComponent extends BaseEditorComponent<Book> implements OnIn
   }
 
 
+  addRequest(): void {
+    this.requestStoreService.entity = new Request({book: this.bookStoreService.entity});
+    this.router.navigate([
+      AppPathConstants.REQUESTS, AppPathConstants.CREATE
+    ]).then();
+  }
 }

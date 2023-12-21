@@ -10,11 +10,11 @@ import {ActivatedRoute, Router } from "@angular/router";
   template: ''
 })
 export abstract class AbstractList<T extends BaseDomain> implements OnInit {
-  
+
   repository: BaseListRepository;
   data$: Observable<T[]>;
   loading = false;
-  
+
   constructor(
     readonly router: Router,
     readonly route: ActivatedRoute,
@@ -24,8 +24,6 @@ export abstract class AbstractList<T extends BaseDomain> implements OnInit {
   ngOnInit(): void {
     this.getPage(1);
   }
-  
-  abstract getPage(page: number): void;
 
   onCreateClick(): void {
     this.router.navigate(
@@ -41,4 +39,9 @@ export abstract class AbstractList<T extends BaseDomain> implements OnInit {
       ], { relativeTo: this.route }).then();
   }
 
+  getPage(page: number): void {
+    this.loading = true;
+    this.repository.paginationData.page = page;
+    this.data$ = this.repository.getData();
+  }
 }

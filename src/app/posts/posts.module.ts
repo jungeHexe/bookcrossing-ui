@@ -11,12 +11,15 @@ import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
-  declarations: [
-    PostsListComponent,
-    PostsListFilterComponent,
-    PostsListCardComponent,
-    PostCardComponent
-  ],
+    declarations: [
+        PostsListComponent,
+        PostsListFilterComponent,
+        PostsListCardComponent,
+        PostCardComponent
+    ],
+    exports: [
+        PostsListComponent
+    ],
     imports: [
         CommonModule,
         PostsRoutingModule,

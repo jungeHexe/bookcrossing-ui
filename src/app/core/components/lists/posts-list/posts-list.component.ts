@@ -14,8 +14,8 @@ import {Post} from "../../../../posts/domain/post.model";
 })
 export class PostsListComponent extends AbstractList<Post> implements OnInit {
 
-  @Input() bookId: string;
-  @Input() userId: string;
+  @Input() bookId: string = null;
+  @Input() userId: string = null;
 
   repository: BaseListRepository;
 
@@ -30,15 +30,9 @@ export class PostsListComponent extends AbstractList<Post> implements OnInit {
   ngOnInit(): void {
     this.repository = new PostsInternalListRepository(
       this.commonDataService,
-      this.userId,
       this.bookId,
+      this.userId,
     );
+    super.ngOnInit();
   }
-
-  getPage(page: number): void {
-    this.loading = true;
-    this.repository.paginationData.page = page;
-    this.data$ = this.repository.getData();
-  }
-
 }

@@ -31,11 +31,4 @@ export class PostsListComponent extends AbstractList<Post>{
 
   }
 
-  getPage(page: number): void {
-    this.loading = true;
-    this.repository.paginationData.page = page;
-    this.data$ = this.repository.getData();
-  }
-
-
 }
