@@ -76,7 +76,6 @@ export class Book extends BaseDomain {
   }
 
   toString(): string {
-    console.log(this.cardTitle)
     return this.cardTitle;
   }
 }

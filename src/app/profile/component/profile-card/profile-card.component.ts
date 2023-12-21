@@ -43,7 +43,6 @@ export class ProfileCardComponent extends BaseEditorComponent<User> implements O
       });
     }
 
-    console.log(this.entityStoreService.loadedEntity)
     if (this.entityStoreService.loadedEntity && !this.entityStoreService.entity) {
       this.entityStoreService.entity = new User(this.entityStoreService.loadedEntity);
     }
