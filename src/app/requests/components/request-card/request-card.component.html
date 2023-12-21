@@ -27,7 +27,7 @@
         (click)="save()"
       ></app-button>
       <app-button
-        *ngIf="isCanEdit && isReadOnlyMode$.value"
+        *ngIf="isCanEdit() && isReadOnlyMode$.value"
         class="mt-md"
         [label]="'Редактировать'"
         (click)="onEditClick()"
