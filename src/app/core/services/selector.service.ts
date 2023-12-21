@@ -9,8 +9,9 @@ import {BooksListSorting} from "../enums/books-list-sorting.enum";
 import { Author } from "../domain/author.model";
 import {PostType} from "../enums/post-type.enum";
 import {Book} from "../../books/domain/book.model";
+import {Point} from "../../points/domain/point.model";
 
-export type SelectorType = 'genre' | 'book_sort' | 'author' | 'book' | 'post_type' | null;
+export type SelectorType = 'genre' | 'book_sort' | 'author' | 'book' | 'post_type' | 'point' | null;
 
 @Injectable({ providedIn: 'root' })
 export class SelectorService {
@@ -32,6 +33,8 @@ export class SelectorService {
         return this.getPostTypes();
       case "book":
         return this.getBooks(params);
+      case "point":
+        return this.getPoints();
       default:
         return of([]);
     }
@@ -81,6 +84,19 @@ export class SelectorService {
           const options: SelectOption[] = [];
           response.items?.forEach((value: any) => {
             this.pushOption(options, {name: Book.toClientObject(value).cardTitle}, value.guid);
+          });
+          return options;
+        }));
+  }
+
+  private getPoints(): Observable<SelectOption[]> {
+    return this.http.get(`${SERVER_URL}bookcrossing-points/all`)
+      .pipe(
+        catchError((err) => this.errorHandler.handleErrorAndNull(err, 'Ошибка при получении списка точек')),
+        map((response: any) => {
+          const options: SelectOption[] = [];
+          response?.forEach((value: any) => {
+            this.pushOption(options, {name: Point.toClientObject(value).valueForSelector}, value.guid);
           });
           return options;
         }));

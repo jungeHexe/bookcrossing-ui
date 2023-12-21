@@ -32,8 +32,6 @@
       font-family: 'Playfair Display', sans-serif;
       font-size: 30px;
       text-overflow: ellipsis;
-      max-height: 15%;
-      height: 15%;
       overflow:hidden;
       display:inline-block;
       white-space: nowrap;
@@ -66,4 +64,8 @@
       }
     }
   }
+}
+
+.round-btn {
+  box-shadow: 0 0 0 2px $brown, 0 0 13px #333;
 }

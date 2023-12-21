@@ -40,6 +40,7 @@ export class SelectInputComponent implements OnInit {
       .subscribe(value => {
         this.options = value;
       });
+    console.log(this.control.value)
   }
 
   defaultParams(): HttpParams {

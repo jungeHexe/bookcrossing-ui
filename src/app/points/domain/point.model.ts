@@ -10,6 +10,11 @@ export class Point extends BaseDomain {
   get ballon(): string {
     return `<b>${this.title}</b><br/>${this.addressText}`
   }
+
+  get valueForSelector(): string {
+    return `${this.title} (${this.addressText})`;
+  }
+
   constructor(entity: Partial<Point> = null) {
     super();
     if (!entity) {

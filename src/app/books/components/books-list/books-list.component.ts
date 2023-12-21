@@ -28,10 +28,4 @@ export class BooksListComponent extends AbstractList<Book> {
 
   }
 
-  getPage(page: number): void {
-    this.loading = true;
-    this.repository.paginationData.page = page;
-    this.data$ = this.repository.getData();
-  }
-
 }

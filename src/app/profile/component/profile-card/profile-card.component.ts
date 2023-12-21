@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {BaseEditorComponent} from "../../../core/components/base-editor.component";
 import {User, UserControlNames} from "../../../core/domain/user.model";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -33,6 +33,7 @@ export class ProfileCardComponent extends BaseEditorComponent<User> implements O
     readonly profileService: ProfileService,
     readonly profileStoreService: ProfileStoreService,
     private readonly authService: AuthentificationService,
+    private readonly changeDetector: ChangeDetectorRef,
   ) {
     super(router, route, navigationService, profileService, profileStoreService);
 
@@ -42,6 +43,7 @@ export class ProfileCardComponent extends BaseEditorComponent<User> implements O
       });
     }
 
+    console.log(this.entityStoreService.loadedEntity)
     if (this.entityStoreService.loadedEntity && !this.entityStoreService.entity) {
       this.entityStoreService.entity = new User(this.entityStoreService.loadedEntity);
     }
@@ -82,6 +84,7 @@ export class ProfileCardComponent extends BaseEditorComponent<User> implements O
     const file: File = event.target.files[0];
     FileUtils.convertFile(file).subscribe(base64 => {
       this.getControl(this.CONTROL_NAMES.AVATAR).setValue('data:image/png;base64,'+ base64);
+      this.changeDetector.detectChanges();
     });
   }
 

@@ -99,6 +99,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       .subscribe((value: User) => {
         this.isLoading$.next(false);
         if (value) {
+          console.log(value)
           UserStoreService.setUser(value);
           this.router.navigate(value.avatar ? [
             AppPathConstants.PROFILE,

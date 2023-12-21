@@ -1,0 +1,22 @@
+<div class="card" (dblclick)="onDblclick.emit(request.guid)">
+  <div class="main-block">
+    <div class="flex justify-content-between">
+      <label>
+        "{{ request.book?.title }}"
+      </label>
+      <label>{{DateUtils.formatToRussianDateOnly(request.createdAt)}}</label>
+    </div>
+    <section>
+      {{ request.point?.title }} <br>
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16" fill="none">
+        <path d="M8.0682 5.90969C8.0682 7.12477 7.08287 8.11003 5.86711 8.11003C4.65135 8.11003 3.66602 7.12477 3.66602 5.90969C3.66602 4.69461 4.65135 3.70935 5.86711 3.70935C7.08287 3.70935 8.0682 4.69461 8.0682 5.90969Z" stroke="#26160C"/>
+        <path d="M9.91856 8.88004L5.86692 15.0908C5.86692 15.0908 2.08545 9.96017 1.54517 8.88004C1.00488 7.7999 0.98426 7.0885 1.00495 5.90966C1.02382 4.8344 0.981801 4.12548 1.54517 3.20932C2.31262 1.96127 3.36455 1.67341 4.78648 1.31908C6.01471 1.01302 6.87849 0.788784 8.02779 1.31908C8.97592 1.75656 9.33619 2.34279 9.91856 3.20932C10.5521 4.15208 10.9629 4.77445 10.999 5.90966C11.0382 7.14336 9.91856 8.88004 9.91856 8.88004Z" stroke="#26160C"/>
+      </svg>
+      {{ request.point?.addressText }}
+    </section>
+    <div class="flex mt-md">
+      <img class="round-btn" [src]="request.user?.avatar"/>
+      <span class="my-auto f-18" *ngIf="request.user">{{ request.user?.name }}</span>
+    </div>
+  </div>
+</div>

@@ -36,6 +36,12 @@ const routes: Routes = [
               .then(m => m.PointsModule),
       },
       {
+        path: AppPathConstants.REQUESTS,
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./requests/requests.module')
+          .then(m => m.RequestsModule),
+      },
+      {
         path: AppPathConstants.POSTS,
         canActivate: [AuthGuard],
         loadChildren: () => import('./posts/posts.module')

@@ -12,7 +12,7 @@ export class BooksListSorting extends BaseEnum {
     [BooksListSortingEnum.RatingAsc, { name: 'По возрастанию рейтинга' }],
     [BooksListSortingEnum.RatingDesc, { name: 'По убыванию рейтинга' }],
     [BooksListSortingEnum.TitleAsc, { name: 'По названию А-Я' }],
-    [BooksListSortingEnum.TitleDesc, { name: 'По названия Я-А' }],
+    [BooksListSortingEnum.TitleDesc, { name: 'По названию Я-А' }],
     ]);
 
   /**
