@@ -38,7 +38,7 @@ export class Book extends BaseDomain {
   }
 
   get cardDescription(): string {
-    return this.description.length > 450 ? this.description.slice(0, 450) + '...' : this.description;
+    return this.description?.length > 450 ? this.description?.slice(0, 450) + '...' : this?.description;
   }
 
   get fullAuthorsNames(): string {
