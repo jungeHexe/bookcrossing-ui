@@ -11,15 +11,15 @@ export class TextInputComponent {
 
   @Input() label = '';
   @Input() placeholder = 'Введите значение';
-  @Input() type: 'password' | 'text' | 'email' = 'text';
+  @Input() type: 'password' | 'text' | 'email' | 'search' = 'text';
   @Input() nativeElement: 'input' | 'textarea' = 'input';
   @Input() control = new CustomFormControl();
   @Input() disabled = false;
   @Input() maxLength: number = 10**10;
   @Input() minLength: number = 1;
-  
+
   @Output() onBlur = new EventEmitter<FocusEvent>();
-  
+
   isRequired(): boolean {
     return this.control.isRequired();
   }

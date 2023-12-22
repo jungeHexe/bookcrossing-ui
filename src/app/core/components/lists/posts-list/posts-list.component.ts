@@ -5,6 +5,7 @@ import {CommonDataService} from "../../../services/commom-data.service";
 import {PostsInternalListRepository} from "../../../repositories/posts-internal-list-repository";
 import {AbstractList} from "../../../domain/abstract-list";
 import {Post} from "../../../../posts/domain/post.model";
+import {AppPathConstants} from "../../../../app.constants";
 
 @Component({
   selector: 'app-posts-list',
@@ -34,5 +35,11 @@ export class PostsListComponent extends AbstractList<Post> implements OnInit {
       this.userId,
     );
     super.ngOnInit();
+  }
+
+  goToPost(guid: string) {
+    this.router.navigate([
+      AppPathConstants.POSTS, AppPathConstants.READ, guid,
+    ]).then();
   }
 }
