@@ -90,7 +90,9 @@
           <section class="read-card-description">{{entityStoreService.entity.about}}</section>
         </app-tab>
         <app-tab tabTitle="Блог">
-          Пока нет данных (
+          <app-posts-list
+            [userId]="entityStoreService.entity?.guid"
+          ></app-posts-list>
         </app-tab>
         <app-tab tabTitle="Экземпляры">
           Пока нет данных (

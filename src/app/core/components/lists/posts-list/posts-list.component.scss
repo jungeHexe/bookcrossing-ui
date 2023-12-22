@@ -5,3 +5,7 @@
   border: 1px $coffee solid;
   padding: 20px;
 }
+
+.list {
+  grid-template-columns: none;
+}

@@ -9,7 +9,7 @@
     </label>
     <section>{{ post.content }}</section>
     <div class="flex justify-content-between mt-md">
-    <div class="flex">
+    <div class="flex" (click)="goToUser(post.user?.guid)">
       <img class="round-btn" [src]="post.user?.avatar"/>
       <span class="my-auto f-18" *ngIf="post.user">{{ post.user?.name }}</span>
     </div>

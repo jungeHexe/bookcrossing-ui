@@ -21,6 +21,7 @@ export class Point extends BaseDomain {
       return;
     }
     ObjectUtils.constructorFiller(this, entity);
+    this.name = this.valueForSelector;
   }
 
   static toClientObject(serverObject: any): Point {

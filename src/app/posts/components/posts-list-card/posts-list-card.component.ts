@@ -1,6 +1,8 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Post} from "../../domain/post.model";
 import {DateUtils} from "../../../core/utils/date-utils";
+import {AppPathConstants} from "../../../app.constants";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-posts-list-card',
@@ -14,6 +16,14 @@ export class PostsListCardComponent {
   @Output() onClick = new EventEmitter<string>();
   @Output() onDblclick = new EventEmitter<string>();
 
-    protected readonly DateUtils = DateUtils;
-  protected readonly Date = Date;
+  constructor(
+    private readonly router: Router,
+  ) {
+  }
+
+  goToUser(guid: string) {
+    this.router.navigate([
+      AppPathConstants.PROFILE, guid
+    ]).then();
+  }
 }

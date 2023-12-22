@@ -14,9 +14,9 @@
       </svg>
       {{ request.point?.addressText }}
     </section>
-    <div class="flex mt-md">
+    <div class="flex mt-md" (click)="goToUser(request.user?.guid)">
       <img class="round-btn" [src]="request.user?.avatar"/>
       <span class="my-auto f-18" *ngIf="request.user">{{ request.user?.name }}</span>
-    </div>
+    </div >
   </div>
 </div>

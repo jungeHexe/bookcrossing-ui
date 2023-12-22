@@ -3,6 +3,7 @@
     <div class="internal-card-border" *ngFor="let post of this.data$ | async |
         paginate: { id: 'server', itemsPerPage: this.repository.paginationData?.perPage,
         currentPage: this.repository.paginationData?.page, totalItems: this.repository.paginationData?.total }"
+         (click)="goToPost(post.guid)"
     >{{post.title}}</div>
   </div>
 

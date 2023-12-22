@@ -4,12 +4,14 @@
     [label]="'Название книги'"
     [placeholder]="'Введите название книги'"
     [control]="getControl(controlNames.BOOK_TITLE)"
+    [type]="'search'"
   ></app-text-input>
   <app-text-input
     class="w-25-p"
     [label]="'Автор книги'"
     [placeholder]="'Введите полное ФИО автора через пробел'"
     [control]="getControl(controlNames.AUTHOR_NAME)"
+    [type]="'search'"
   ></app-text-input>
   <app-select-input
     class="w-25-p"

@@ -57,9 +57,9 @@ export class Post extends BaseDomain {
       content: this.content,
       book_rating: this.bookRating,
       image: this.image,
-      book_id: this.book?.guid,
+      book: this.book?.toServerObject(),
       type: PostType.toServerObject(this.type),
-      user_id: this.user?.guid,
+      user: this.user?.toServerObject(),
       created_at: this.createdAt,
       updated_at: this.updatedAt,
     };
